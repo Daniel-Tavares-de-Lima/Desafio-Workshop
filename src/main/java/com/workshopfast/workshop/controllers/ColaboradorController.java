@@ -18,17 +18,17 @@ import java.util.Optional;
 
 
 @RestController
-//ENDPOINT
+//---------ENDPOINT
 @RequestMapping("/colaboradores")
 public class ColaboradorController{
     
     @Autowired
-    private ColaboradorRepositorio repositorio;
+    private ColaboradorRepositorio repositorioColaborador;
 
     //----- CRIAR COLABORADOR  C
     @PostMapping
     public Colaborador criarColaborador(@RequestBody Colaborador colaborador){
-        Colaborador colaboradorNovo = repositorio.save(colaborador);
+        Colaborador colaboradorNovo = repositorioColaborador.save(colaborador);
         return colaboradorNovo;
     };
 
@@ -36,30 +36,34 @@ public class ColaboradorController{
     // ----- RETORNA TODOS OS COLABORADORES  R
     @GetMapping
     public List<Colaborador> listaColaboradores(){
-        return (List<Colaborador>) repositorio.findAll(); //FEITO CASTTING
+        return (List<Colaborador>) repositorioColaborador.findAll(); //FEITO CASTTING
     };
 
-    
-    // @GetMapping("/{id}")
-    // public Optional<Colaborador> buscaColaborador(@PathVariable int id){
-    //     Optional<Colaborador> colaborador = repositorio.findById(id);
-    //     return colaborador;
-    // }
+    //---- RETORNA DE UM COLABORADOR ESPECIFICO
+    @GetMapping("/{id}")
+    public Optional<Colaborador> buscaColaborador(@PathVariable int id){
+        Optional<Colaborador> colaborador = repositorioColaborador.findById(id);
+        return colaborador;
+    }
 
-    //---- EDITAR USUÁRIO   U
+    //---- EDITAR USUÁRIO UM COLABORADOR ESPECIFICO
     @PutMapping
-    public Colaborador alterarColaborador(@RequestBody Colaborador colaborador){
-        Colaborador colaboradorNovo = repositorio.save(colaborador);
+    public Colaborador alterarTodosColaboradores(@RequestBody Colaborador colaborador){
+        Colaborador colaboradorNovo = repositorioColaborador.save(colaborador);
         return colaboradorNovo;
     };
 
 
+    // @PutMapping("/{id}")
+    // public Optional<Colaborador> alteraColaborador(@PathVariable int id){
+    //     Optional<Colaborador> 
+    // }
     
     // ----- APAGAR COLABORADOR  D
     @DeleteMapping("/{id}")
     public Optional<Colaborador> excluirColaborador(@PathVariable Integer id){
-        Optional<Colaborador> colaborador = repositorio.findById(id);
-        repositorio.deleteById(id);
+        Optional<Colaborador> colaborador = repositorioColaborador.findById(id);
+        repositorioColaborador.deleteById(id);
         return colaborador;
     };
 
