@@ -1,11 +1,9 @@
 package com.workshopfast.workshop.services;
 
 import java.util.Optional;
-
-import org.hibernate.boot.registry.classloading.spi.ClassLoaderService.Work;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.workshopfast.workshop.models.Workshop;
 import com.workshopfast.workshop.repositories.WorkshopRepositorio;
 
@@ -15,8 +13,7 @@ public class WorkshopService {
     @Autowired
     private WorkshopRepositorio workshopRepositorio;
 
-    @Autowired 
-    private ColaboradorService colaboradorService;
+   
 
     //----Buscar Workshop READ
     public Workshop buscaWorkshop(int id){
@@ -26,6 +23,11 @@ public class WorkshopService {
         }else{
             throw new RuntimeException("Workshop não encontrado: " + id);
         }
+    }
+    
+    //---Buscar Todos os Workshops
+    public List<Workshop> todosWorkshop(){
+        return (List<Workshop>) workshopRepositorio.findAll();
     }
 
     //----Criar Workshop CREATE
@@ -53,4 +55,7 @@ public class WorkshopService {
             throw new RuntimeException("Não foi possivel deletar o workshop(ENTIDADE RELACIONADAS)");
         }
     }
+
+
+    
 }

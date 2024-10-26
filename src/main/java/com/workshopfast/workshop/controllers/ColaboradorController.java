@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
-
 import com.workshopfast.workshop.models.Colaborador;
 import com.workshopfast.workshop.services.ColaboradorService;
 
@@ -25,16 +24,8 @@ import java.util.List;
 @RequestMapping("/colaboradores")
 public class ColaboradorController{
     
-    // @Autowired
-    // private ColaboradorRepositorio repositorioColaborador;
-
-    // //----- CRIAR COLABORADOR  C
-    // @PostMapping
-    // public Colaborador criarColaborador(@RequestBody Colaborador colaborador){
-    //     Colaborador colaboradorNovo = repositorioColaborador.save(colaborador);
-    //     return colaboradorNovo;
-    // };
-
+    @Autowired
+    private ColaboradorService colaboradorService;
 
     // ----- RETORNA TODOS OS COLABORADORES  R
     @GetMapping
@@ -42,63 +33,31 @@ public class ColaboradorController{
         return colaboradorService.todosColaboradores(); //FEITO CASTTING
     };
 
-    // //---- RETORNA DE UM COLABORADOR ESPECIFICO
-    // @GetMapping("/{id}")
-    // public Optional<Colaborador> buscaColaborador(@PathVariable int id){
-    //     Optional<Colaborador> colaborador = repositorioColaborador.findById(id);
-    //     return colaborador;
-    // }
-
-    // //---- EDITAR USUÁRIO UM COLABORADOR ESPECIFICO
-    // @PutMapping
-    // public Colaborador alterarTodosColaboradores(@RequestBody Colaborador colaborador){
-    //     Colaborador colaboradorNovo = repositorioColaborador.save(colaborador);
-    //     return colaboradorNovo;
-    // };
-
-
-    // // @PutMapping("/{id}")
-    // // public Optional<Colaborador> alteraColaborador(@PathVariable int id){
-    // //     Optional<Colaborador> 
-    // // }
-    
-    // // ----- APAGAR COLABORADOR  D
-    // @DeleteMapping("/{id}")
-    // public Optional<Colaborador> excluirColaborador(@PathVariable Integer id){
-    //     Optional<Colaborador> colaborador = repositorioColaborador.findById(id);
-    //     repositorioColaborador.deleteById(id);
-    //     return colaborador;
-    // };
-
-
-    @Autowired
-    private ColaboradorService colaboradorService;
 
     //-- localhost:8080/colaboradores/id
+    //-- Busca os Colaboradores
     @GetMapping("/{id}") 
     public ResponseEntity<Colaborador> buscaColaborador(@PathVariable int id){
         Colaborador colaborador = this.colaboradorService.buscaColaborador(id);
         return ResponseEntity.ok().body(colaborador);
     }
 
+
+    //----Busca todos os Colaboradores READ
+    @GetMapping("/colaboradores/{id}")
+    public ResponseEntity<List<Colaborador>> todosColaboradores(){
+        List<Colaborador> colaboradores = this.colaboradorService.todosColaboradores();
+        return ResponseEntity.ok(colaboradores);
+    }
+    
+
     //----Criar Colaborador CREATE
     @PostMapping
    public ResponseEntity<Colaborador> criarColaborador(@Valid @RequestBody Colaborador colaborador){
     Colaborador novoColaborador = colaboradorService.criarColaborador(colaborador);
-    return ResponseEntity.status(HttpStatus.CREATED).body(novoColaborador);
+        return ResponseEntity.status(HttpStatus.CREATED).body(novoColaborador);
    }
 
-
-   //-----Editar Colaborador
-//    @PutMapping
-//    public ResponseEntity<Colaborador> editarColaborador(@Valid @RequestBody Colaborador colaborador){
-//         try{
-//             Colaborador colaboradorAtualizado = colaboradorService.editarColaborador(colaborador);
-//             return ResponseEntity.ok(colaboradorAtualizado);
-//         } catch(RuntimeException e){
-//             return ResponseEntity.notFound().build();
-//         }
-//    }
 
    //----Editar Colaborador UPDATE
    @PutMapping("/{id}")
@@ -108,6 +67,7 @@ public class ColaboradorController{
         return ResponseEntity.noContent().build();
    }
 
+   
    //---Deletar colaborador DELETE
    @DeleteMapping("/{id}")
    public ResponseEntity<Void> delete(@PathVariable int id){
