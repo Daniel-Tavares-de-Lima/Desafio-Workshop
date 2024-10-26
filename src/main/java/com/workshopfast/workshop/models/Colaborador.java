@@ -16,7 +16,7 @@ public class Colaborador {
     
     @Id //---ESPECIFICAR QUE É PRIMARY KEY
     @GeneratedValue(strategy = GenerationType.IDENTITY) //---AUTO INCREMENT
-    @Column(name = "id")
+    @Column(name = "id", unique = true, nullable = true) // ---- Unico, NotNull
     private Integer id;
 
     @Column(name = "nome", length = 100, nullable = true) // -- 100 Caracteres, NotNull
