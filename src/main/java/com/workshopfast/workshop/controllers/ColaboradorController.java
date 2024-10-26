@@ -15,6 +15,10 @@ import javax.validation.Valid;
 import com.workshopfast.workshop.models.Colaborador;
 import com.workshopfast.workshop.services.ColaboradorService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
 import java.util.List;
 
 
@@ -24,10 +28,12 @@ import java.util.List;
 @RequestMapping("/colaboradores")
 public class ColaboradorController{
     
+
     @Autowired
     private ColaboradorService colaboradorService;
 
     // ----- RETORNA TODOS OS COLABORADORES  R
+    @Operation(summary = "Lista todos os colaboradores", description = "Retorna uma lista de todos os colaboradores.")
     @GetMapping
     public List<Colaborador> listaColaboradores(){
         return colaboradorService.todosColaboradores(); //FEITO CASTTING
@@ -35,6 +41,12 @@ public class ColaboradorController{
 
 
     //-- localhost:8080/colaboradores/id
+    @Operation(description = "O endpoint busca um colaborador específico pelo ID fornecido na URL e retorna os detalhes desse colaborador como resposta, ou gera um erro se não for encontrado.")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Retorna um objeto Colaborador quando o colaborador com o ID especificado é encontrado."),
+        @ApiResponse(responseCode = "404", description = "Retorna esse status se não for encontrado um colaborador com o ID fornecido."),
+        @ApiResponse(responseCode = "500", description = " Retorna esse status se ocorrer um erro inesperado no servidor ao processar a solicitação.")
+    })
     //-- Busca os Colaboradores
     @GetMapping("/{id}") 
     public ResponseEntity<Colaborador> buscaColaborador(@PathVariable int id){
@@ -52,6 +64,12 @@ public class ColaboradorController{
     
 
     //----Criar Colaborador CREATE
+
+    @Operation(summary = "Cria um novo colaborador", description = "Cria um novo colaborador com os dados fornecidos.")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "201", description = "Colaborador criado com sucesso."),
+        @ApiResponse(responseCode = "400", description = "Se a requisição estiver mal formatada ou os dados forem inválidos.")
+    })
     @PostMapping
    public ResponseEntity<Colaborador> criarColaborador(@Valid @RequestBody Colaborador colaborador){
     Colaborador novoColaborador = colaboradorService.criarColaborador(colaborador);
@@ -60,6 +78,11 @@ public class ColaboradorController{
 
 
    //----Editar Colaborador UPDATE
+   @Operation(summary = "Edita um colaborador existente", description = "Atualiza os dados de um colaborador existente com o ID fornecido.")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "204", description = "Colaborador atualizado com sucesso."),
+        @ApiResponse(responseCode = "404", description = "Retorna esse status se o colaborador não for encontrado.")
+    })
    @PutMapping("/{id}")
    public ResponseEntity<Void> update(@Valid Colaborador colaborador, @PathVariable int id){
         colaborador.setId(id);
@@ -67,8 +90,13 @@ public class ColaboradorController{
         return ResponseEntity.noContent().build();
    }
 
-   
+
    //---Deletar colaborador DELETE
+   @Operation(summary = "Deleta um colaborador", description = "Remove um colaborador existente com o ID fornecido.")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "204", description = "Colaborador deletado com sucesso."),
+        @ApiResponse(responseCode = "404", description = "Retorna esse status se o colaborador não for encontrado.")
+    })
    @DeleteMapping("/{id}")
    public ResponseEntity<Void> delete(@PathVariable int id){
         this.colaboradorService.deletarColaborador(id);

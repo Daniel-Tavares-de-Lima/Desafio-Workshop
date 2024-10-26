@@ -16,8 +16,9 @@ import java.util.List;
 import com.workshopfast.workshop.models.Workshop;
 import com.workshopfast.workshop.services.WorkshopService;
 
-
-
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 import javax.validation.Valid;
 
@@ -31,6 +32,12 @@ public class WorkshopController {
     private WorkshopService workshopService;
 
     //-----Busca Os Workshops READ--
+     @Operation(summary = "Busca um workshop pelo ID", description = "Retorna os detalhes de um workshop específico com o ID fornecido.")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Retorna o workshop quando o ID é encontrado."),
+        @ApiResponse(responseCode = "404", description = "Caso nenhum workshop for encontrado com o ID fornecido."),
+        @ApiResponse(responseCode = "500", description = "Caso ocorrer um erro inesperado no servidor ao processar a solicitação.")
+    })
     @GetMapping("/{id}")
     public ResponseEntity<Workshop> buscaWorkshop(@PathVariable int id){
         Workshop workshop = this.workshopService.buscaWorkshop(id);
@@ -39,6 +46,7 @@ public class WorkshopController {
 
      //----Busca todos os Colaboradores READ
      @GetMapping()
+     @Operation(summary = "Lista todos os workshops", description = "Retorna uma lista de todos os workshops.")
     public ResponseEntity<List<Workshop>> todosWorkshop(){
         List<Workshop> workshops = this.workshopService.todosWorkshop();
         return ResponseEntity.ok(workshops);
@@ -46,6 +54,11 @@ public class WorkshopController {
 
 
     //---Criar Workshop CREATE
+    @Operation(summary = "Cria um novo workshop", description = "Cria um novo workshop com os dados fornecidos.")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "201", description = "Workshop criado com sucesso."),
+        @ApiResponse(responseCode = "400", description = "Se a requisição estiver mal formatada ou os dados forem inválidos.")
+    })
     @PostMapping
    public ResponseEntity<Workshop> criarWorkshop(@Valid @RequestBody Workshop workshop){
         Workshop novoWorkshop = workshopService.criarWorkshop(workshop);
@@ -54,6 +67,11 @@ public class WorkshopController {
 
 
    //----EDITAR O WORKSHOP UPDATE
+   @Operation(summary = "Edita um workshop existente", description = "Atualiza os dados de um workshop existente com o ID fornecido.")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "204", description = "Workshop atualizado com sucesso."),
+        @ApiResponse(responseCode = "404", description = "Retorna esse status se o workshop não for encontrado.")
+    })
    @PutMapping("/{id}")
    public ResponseEntity<Void> editarWorkshop(@Valid @RequestBody Workshop workshop, @PathVariable int id){
         workshop.setId(id);
@@ -63,6 +81,11 @@ public class WorkshopController {
 
 
    //--DELETAR WORKSHOP DELETE
+   @Operation(summary = "Deleta um workshop", description = "Remove um workshop existente com o ID fornecido.")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "204", description = "Workshop deletado com sucesso."),
+        @ApiResponse(responseCode = "404", description = "Retorna esse status se o workshop não for encontrado.")
+    })
    @DeleteMapping("/{id}")
    public ResponseEntity<Void> deletarWorkshop(@PathVariable int id){
         this.workshopService.deletarWorkshop(id);
