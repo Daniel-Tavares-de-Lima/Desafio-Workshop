@@ -22,9 +22,9 @@ public class Workshop {
     @Column(name = "nome", nullable = true)
     private String nome;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "data", nullable = true)
-    private Date data;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "dataRealizacao", nullable = true)
+    private Date dataRealizacao;
 
     @Column(name = "descricao")
     private String descricao;
@@ -41,8 +41,8 @@ public class Workshop {
     }
 
 
-    public Date getData(){
-        return data;
+    public Date getDataRealizacao(){
+        return dataRealizacao;
     }
 
     public String getDescricao(){
@@ -60,8 +60,8 @@ public class Workshop {
         this.nome = nome;
     }
 
-    public void SetData(Date data){
-        this.data = data;
+    public void SetDataRealizacao(Date dataRealizacao){
+        this.dataRealizacao = dataRealizacao;
     }
 
     public void SetDescricao(String descricao){
