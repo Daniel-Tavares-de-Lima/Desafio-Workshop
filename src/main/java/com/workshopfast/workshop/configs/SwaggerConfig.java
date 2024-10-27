@@ -1,4 +1,4 @@
-package com.workshopfast.workshop.config;
+package com.workshopfast.workshop.configs;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
