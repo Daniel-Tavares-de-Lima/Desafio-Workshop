@@ -14,8 +14,11 @@ import java.util.List;
 import javax.validation.Valid;
 import com.workshopfast.workshop.models.AtaPresenca;
 import com.workshopfast.workshop.models.Colaborador;
+import com.workshopfast.workshop.models.Workshop;
 import com.workshopfast.workshop.services.AtaPresencaService;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import com.workshopfast.workshop.services.ColaboradorService;
+import com.workshopfast.workshop.services.WorkshopService;
 
 @RestController
 @RequestMapping("/ata-de-presenca")
@@ -24,6 +27,11 @@ public class AtaPresencaController {
     @Autowired
     private AtaPresencaService ataPresencaService;
 
+    @Autowired 
+    private ColaboradorService colaboradorService;
+
+    @Autowired
+    private WorkshopService workshopService;
 
     //---Lista todas as atas de presença
     @GetMapping //----API OK
@@ -47,12 +55,36 @@ public class AtaPresencaController {
 
 
     //---Criar nova Ata de Presentes CREATE
+//     @PostMapping
+//     public ResponseEntity<AtaPresenca> criarAtaPresentes(@Valid @RequestBody AtaPresenca presentes){
+//     AtaPresenca novaAtaPresentes = ataPresencaService.salvarAtaPresentes(presentes);
+//         return ResponseEntity.status(HttpStatus.CREATED).body(novaAtaPresentes);
+//    }
+
     @PostMapping
     public ResponseEntity<AtaPresenca> criarAtaPresentes(@Valid @RequestBody AtaPresenca presentes){
-    AtaPresenca novaAtaPresentes = ataPresencaService.salvarAtaPresentes(presentes);
-        return ResponseEntity.status(HttpStatus.CREATED).body(novaAtaPresentes);
-   }
+        
+        // Buscando colaborador e workshop pelos IDs
+        Colaborador colaborador = colaboradorService.buscaColaborador(presentes.getColaborador().getId());
+        Workshop workshop = workshopService.buscaWorkshop(presentes.getWorkshop().getId());
 
+        // Verificando se colaborador e workshop existem
+        if (colaborador == null) {
+            return ResponseEntity.badRequest().body(null); // ou lance uma exceção adequada
+        }
+        if (workshop == null) {
+            return ResponseEntity.badRequest().body(null); // ou lance uma exceção adequada
+        }
+        
+
+        // Definindo colaborador e workshop na ata de presença
+        presentes.setColaborador(colaborador);
+        presentes.setWorkshop(workshop);
+        
+        // Salvar a nova ata de presença
+        AtaPresenca novaAtaPresentes = ataPresencaService.salvarAtaPresentes(presentes);
+        return ResponseEntity.status(HttpStatus.CREATED).body(novaAtaPresentes);
+    }
 
    //---Editar ata de Presentes
    @PutMapping("/{id}")

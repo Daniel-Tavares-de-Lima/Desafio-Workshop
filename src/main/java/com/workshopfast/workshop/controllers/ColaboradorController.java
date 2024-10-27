@@ -50,7 +50,7 @@ public class ColaboradorController{
         @ApiResponse(responseCode = "500", description = " Retorna esse status se ocorrer um erro inesperado no servidor ao processar a solicitação.")
     })
     //-- Busca os Colaboradores
-    @GetMapping("/{id}") //---API TESTADA E FUNCIONANDO
+    @GetMapping("/{id}") //---ENDPOINT TESTADA E FUNCIONANDO
     public ResponseEntity<Colaborador> buscaColaborador(@PathVariable int id){
         Colaborador colaborador = this.colaboradorService.buscaColaborador(id);
         return ResponseEntity.ok().body(colaborador);
@@ -72,7 +72,7 @@ public class ColaboradorController{
         @ApiResponse(responseCode = "201", description = "Colaborador criado com sucesso."),
         @ApiResponse(responseCode = "400", description = "Se a requisição estiver mal formatada ou os dados forem inválidos.")
     })
-    @PostMapping //--API TESTADA E FUNCIONANDO
+    @PostMapping //--ENDPOINT TESTADA E FUNCIONANDO
    public ResponseEntity<Colaborador> criarColaborador(@Valid @RequestBody Colaborador colaborador){
     Colaborador novoColaborador = colaboradorService.criarColaborador(colaborador);
         return ResponseEntity.status(HttpStatus.CREATED).body(novoColaborador);
@@ -81,12 +81,11 @@ public class ColaboradorController{
 
    //----Editar Colaborador UPDATE
    @Operation(summary = "Edita um colaborador existente", description = "Atualiza os dados de um colaborador existente com o ID fornecido.")
-    @ApiResponses(value = {
+    @ApiResponses(value = { 
         @ApiResponse(responseCode = "204", description = "Colaborador atualizado com sucesso."),
         @ApiResponse(responseCode = "404", description = "Retorna esse status se o colaborador não for encontrado.")
     })
-
-    @PutMapping("/{id}")
+    @PutMapping("/{id}") //---ENDPOINT TESTADO E FUNCIONANDO
     @Validated(AtualizaColaborador.class)
     public ResponseEntity<Void> atualizaColaborador(@Valid @RequestBody Colaborador colaborador, @PathVariable int id){
         colaborador.setId(id);
@@ -101,7 +100,7 @@ public class ColaboradorController{
         @ApiResponse(responseCode = "204", description = "Colaborador deletado com sucesso."),
         @ApiResponse(responseCode = "404", description = "Retorna esse status se o colaborador não for encontrado.")
     })
-   @DeleteMapping("/{id}")
+   @DeleteMapping("/{id}") //----ENDPOINT TESTADO E FUNCIONANDO
    public ResponseEntity<Void> delete(@PathVariable int id){
         this.colaboradorService.deletarColaborador(id);
         return ResponseEntity.noContent().build();
