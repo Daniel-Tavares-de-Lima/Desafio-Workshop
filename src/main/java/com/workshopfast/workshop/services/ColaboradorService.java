@@ -43,12 +43,27 @@ public class ColaboradorService {
     }
 
     ///-----Editar colaborador Update
-    public Colaborador editarColaborador(Colaborador colaborador){
-        Colaborador novoColaborador = buscaColaborador(colaborador.getId());
-        novoColaborador.setNome(novoColaborador.getNome());
-        return this.repositorioColaborador.save(novoColaborador);
-    }
+    // public Colaborador editarColaborador(Colaborador colaborador){
+    //     Colaborador novoColaborador = buscaColaborador(colaborador.getId());
+    //     novoColaborador.setNome(novoColaborador.getNome());
+    //     return this.repositorioColaborador.save(novoColaborador);
+    // }
 
+    public Colaborador editarColaborador(Colaborador colaborador) {
+        // Busca o colaborador existente pelo ID
+        Colaborador colaboradorExistente = buscaColaborador(colaborador.getId());
+    
+        // Verifica se o colaborador foi encontrado
+        if (colaboradorExistente == null) {
+            throw new RuntimeException("Colaborador não encontrado");
+        }
+    
+        // Atualiza os campos necessários
+        colaboradorExistente.setNome(colaborador.getNome());
+        
+
+        return this.repositorioColaborador.save(colaboradorExistente);
+    }
    
     //----- Excluir o Colaborador - DELETE
     public void deletarColaborador(int id){
@@ -63,4 +78,12 @@ public class ColaboradorService {
     }
 
 
+
+    // // ----- APAGAR COLABORADOR  D
+    // @DeleteMapping("/{id}")
+    // public Optional<Colaborador> excluirColaborador(@PathVariable Integer id){
+    //     Optional<Colaborador> colaborador = repositorioColaborador.findById(id);
+    //     repositorioColaborador.deleteById(id);
+    //     return colaborador;
+    // };
 }
