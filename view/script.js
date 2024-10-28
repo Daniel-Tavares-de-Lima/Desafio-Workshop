@@ -43,7 +43,7 @@ function workshop(){
             const linha = document.createElement("tr");
             linha.innerHTML = `
                 <td>${workshopTaag.id}</td>
-                <td><a href="#" onclick="mostrarDetalhesWorkshop(event,${workshopTaag.id})">${workshopTaag.nome}</a></td>
+                <td onclick="mostrarDetalhesWorkshop(event, ${workshopTaag.id})" style="cursor: pointer;">${workshopTaag.nome}</td>
                 <td>${formatDate(workshopTaag.dataRealizacao)}</td>
             `;
             tabelaWorkshop.appendChild(linha);
