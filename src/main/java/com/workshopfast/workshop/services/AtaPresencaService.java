@@ -11,8 +11,9 @@ import com.workshopfast.workshop.models.Workshop;
 import com.workshopfast.workshop.repositories.AtaPresencaRepositorio;
 import com.workshopfast.workshop.repositories.ColaboradorRepositorio;
 import com.workshopfast.workshop.repositories.WorkshopRepositorio;
-
+import com.workshopfast.workshop.models.AtaPresencaDT;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 
 @Service
 public class AtaPresencaService {
@@ -43,33 +44,34 @@ public class AtaPresencaService {
         }
     }       
 
-
-    //------CRIAR ATA
-    public AtaPresenca criarAta(AtaPresenca ataPresenca) {
-        
-        Integer colaboradorId = ataPresenca.getColaborador().getId();
-        Integer workshopId = ataPresenca.getWorkshop().getId();
-        Boolean presente = ataPresenca.getPresente();
-
-
-        // Verificar se o colaborador existe
-        Colaborador colaborador = colaboradorRepositorio.findById(colaboradorId)
-                .orElseThrow(() -> new EntityNotFoundException("Colaborador não encontrado"));
     
-        // Verificar se o workshop existe
-        Workshop workshop = workshopRepositorio.findById(workshopId)
-                .orElseThrow(() -> new EntityNotFoundException("Workshop não encontrado"));
-    
-        // Criar a nova ata de presença
-        AtaPresenca novaAta = new AtaPresenca();
+    //----METODO CRIAR ATA COM PROBLEMAS (EXPLICAÇÃO NA DOCUMENTAÇÃO FORNECIDA NO REPOSITORIO NO GITHUB EM PDF)
+    // public AtaPresenca criarAta(AtaPresencaDT dto) {
+    //     // Verifica se os IDs de colaborador e workshop foram fornecidos
+    //     if (dto.getColaboradorId() == null || dto.getWorkshopId() == null) {
+    //         throw new IllegalArgumentException("IDs de colaborador e workshop são obrigatórios e não podem ser nulos");
+    //     }
 
-        novaAta.setColaborador(colaborador);
-        novaAta.setWorkshop(workshop);
-        novaAta.setPresente(presente);
-    
-        // Salvar a ata no repositório e retornar a instância salva
-        return ataPresencaRepositorio.save(novaAta);
-    }
+    //     // Busca o colaborador pelo ID; lança exceção se não encontrado
+    //     Colaborador colaborador = colaboradorRepositorio.findById(dto.getColaboradorId()).orElseThrow(() -> new IllegalArgumentException("Colaborador com ID " + dto.getColaboradorId() + " não encontrado"));
+
+    //     // Busca o workshop pelo ID; lança exceção se não encontrado
+    //     Workshop workshop = workshopRepositorio.findById(dto.getWorkshopId()).orElseThrow(() -> new IllegalArgumentException("Workshop com ID " + dto.getWorkshopId() + " não encontrado"));
+
+    //     // Verifica se o campo 'presente' é fornecido; caso contrário, atribui um valor padrão (como 'false')
+    //     Boolean presente = dto.getPresente() != null ? dto.getPresente() : false;
+
+    //     // Cria uma nova instância de AtaPresenca e define os campos
+    //     AtaPresenca ataPresenca = new AtaPresenca();
+    //     ataPresenca.setColaborador(colaborador);
+    //     ataPresenca.setWorkshop(workshop);
+    //     ataPresenca.setPresente(presente);
+
+    //     // Salva e retorna a nova ata de presença
+    //     return ataPresencaRepositorio.save(ataPresenca);
+    // }
+      
+      
     
 
     //----Editar Ata de Presença Update

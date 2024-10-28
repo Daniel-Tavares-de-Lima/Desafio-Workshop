@@ -18,23 +18,22 @@ public class Workshop {
     //-----Coluna Id
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = true) // ---- NotNull
+    @Column(name = "id", nullable = false) // ---- NotNull
     private Integer id;
 
     //----Coluna Nome
-    @Column(name = "nome", nullable = true)
+    @Column(name = "nome", nullable = false, length = 100)
     private String nome;
 
     //---Coluna DataDeRealização
     @Temporal(TemporalType.DATE)
-    @Column(name = "dataRealizacao", nullable = true)
+    @Column(name = "dataRealizacao", nullable = false)
     private Date dataRealizacao;
 
     //----Coluna Descrição
-    @Column(name = "descricao")
+    @Column(name = "descricao", length = 500)
     private String descricao;
 
-     
     /*---GETS */
 
     public Integer getId(){

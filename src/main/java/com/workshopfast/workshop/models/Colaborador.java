@@ -19,11 +19,11 @@ public class Colaborador {
     
     @Id //---ESPECIFICAR QUE É PRIMARY KEY
     @GeneratedValue(strategy = GenerationType.IDENTITY) //---AUTO INCREMENT
-    @Column(name = "id", nullable = true) // ---- NotNull
+    // @Column(name = "id", nullable = false) // ---- NotNull
     private Integer id;
 
     //----Coluna Nome
-    @Column(name = "nome", length = 100, nullable = true) // -- 100 Caracteres, NotNull
+    @Column(name = "nome", length = 100, nullable = false) // -- 100 Caracteres, NotNull
     @NotNull
     @NotEmpty
     private String nome;
