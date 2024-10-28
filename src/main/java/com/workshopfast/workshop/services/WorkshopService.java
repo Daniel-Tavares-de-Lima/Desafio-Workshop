@@ -1,11 +1,11 @@
 package com.workshopfast.workshop.services;
 
+
+/*----------Imports--------- */
 import java.util.Optional;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.workshopfast.workshop.models.Colaborador;
 import com.workshopfast.workshop.models.Workshop;
 import com.workshopfast.workshop.repositories.WorkshopRepositorio;
 
@@ -34,7 +34,7 @@ public class WorkshopService {
 
     //----Criar Workshop CREATE
     public Workshop criarWorkshop(Workshop workshop){
-        workshop.setId(null);
+        // workshop.setId(null);
         workshop = this.workshopRepositorio.save(workshop);
         return workshop;
     }

@@ -1,5 +1,6 @@
 package com.workshopfast.workshop.controllers;
 
+/*-----------Imports */
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +17,6 @@ import javax.validation.Valid;
 import com.workshopfast.workshop.models.Colaborador;
 import com.workshopfast.workshop.models.Colaborador.AtualizaColaborador;
 import com.workshopfast.workshop.services.ColaboradorService;
-
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -73,8 +73,10 @@ public class ColaboradorController{
         @ApiResponse(responseCode = "400", description = "Se a requisição estiver mal formatada ou os dados forem inválidos.")
     })
     @PostMapping //--ENDPOINT TESTADA E FUNCIONANDO
-   public ResponseEntity<Colaborador> criarColaborador(@Valid @RequestBody Colaborador colaborador){
-    Colaborador novoColaborador = colaboradorService.criarColaborador(colaborador);
+    public ResponseEntity<Colaborador> criarColaborador(@Valid @RequestBody Colaborador colaborador){
+
+        Colaborador novoColaborador = colaboradorService.criarColaborador(colaborador);
+        System.out.println("ID do colaborador criado: " + novoColaborador.getId());
         return ResponseEntity.status(HttpStatus.CREATED).body(novoColaborador);
    }
 

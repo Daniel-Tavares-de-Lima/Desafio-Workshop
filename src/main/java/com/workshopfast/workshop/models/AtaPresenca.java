@@ -1,5 +1,6 @@
 package com.workshopfast.workshop.models;
 
+/*-------Imports------ */
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,26 +20,17 @@ public class AtaPresenca {
 
 
     @ManyToOne
-    @JoinColumn(name = "id_colaborador", nullable = true) //---nome Da Coluna, NotNull = False
+    @JoinColumn(name = "colaborador_id", nullable = false)//---nome Da Coluna, NotNull = False
     private Colaborador colaborador;
 
-    @JoinColumn(name = "id_workshop", nullable = true) //---nome Da Coluna, NotNull = False
     @ManyToOne
+    @JoinColumn(name = "workshop_id", nullable = false) //---nome Da Coluna, NotNull = False
     private Workshop workshop;
 
-    @Column(nullable = true)
+    @Column(name = "presente", columnDefinition = "BOOLEAN DEFAULT FALSE", nullable = false)
     private Boolean presente;
 
-    //---Construtor Padrão para evitar o erro:"No default constructor for entity 'com.workshopfast.workshop.models.AtaPresenca'"
-    public AtaPresenca(){
-
-    }
-    public AtaPresenca(Colaborador colaborador, Workshop workshop, Boolean presente){
-        this.workshop = workshop;
-        this.colaborador = colaborador;
-        this.presente = presente;
-    }
-
+    
 
     /*----GETS */
     public Integer getId() {

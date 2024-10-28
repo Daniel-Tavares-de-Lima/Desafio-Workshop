@@ -1,12 +1,13 @@
 package com.workshopfast.workshop.repositories;
 
-import org.springframework.data.repository.CrudRepository;
+/*---------Imports----------- */
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.workshopfast.workshop.models.Workshop;
 
 @Repository
-public interface WorkshopRepositorio extends CrudRepository<Workshop, Integer>{
+public interface WorkshopRepositorio extends JpaRepository<Workshop, Integer>{
 
     
 }

@@ -1,25 +1,26 @@
 package com.workshopfast.workshop.models;
 
+
+/*--------Imports------ */
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "colaborador")
-
-
 public class Colaborador {
     
     public interface AtualizaColaborador{}
     
     @Id //---ESPECIFICAR QUE É PRIMARY KEY
     @GeneratedValue(strategy = GenerationType.IDENTITY) //---AUTO INCREMENT
-    @Column(name = "id", unique = true, nullable = true) // ---- Unico, NotNull
+    @Column(name = "id", nullable = true) // ---- NotNull
     private Integer id;
 
 
@@ -28,6 +29,18 @@ public class Colaborador {
     @NotEmpty
     private String nome;
 
+    public Colaborador(){
+
+    }
+
+    public Colaborador(String nome){
+        this.nome = nome;
+    }
+
+    @ManyToOne
+    private AtaPresenca ataPresenca;
+    // @OneToMany(mappedBy = "colaborador", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    // private List<AtaPresenca> atasDePresenca;
     /*------GETS */
     public Integer getId(){
         return id;

@@ -1,5 +1,6 @@
 package com.workshopfast.workshop.models;
 
+/*-------Imports--------- */
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,7 +17,7 @@ public class Workshop {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = true) // ---- Unico, NotNull
+    @Column(name = "id", nullable = true) // ---- NotNull
     private Integer id;
 
     @Column(name = "nome", nullable = true)
@@ -30,6 +31,15 @@ public class Workshop {
     private String descricao;
 
 
+    public Workshop(){
+
+    }
+
+    public Workshop(String nome, Date dataRealizacao, String descricao){
+        this.nome = nome;
+        this.dataRealizacao = dataRealizacao;
+        this.descricao = descricao;
+    }
     /*---GETS */
 
     public Integer getId(){

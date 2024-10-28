@@ -1,5 +1,7 @@
 package com.workshopfast.workshop.services;
 
+
+/*-----------Imports-------- */
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,11 +10,11 @@ import com.workshopfast.workshop.models.Colaborador;
 import com.workshopfast.workshop.repositories.ColaboradorRepositorio;
 
 
+
 @Service
 public class ColaboradorService {
     @Autowired
     private ColaboradorRepositorio repositorioColaborador;
-
 
     //----Construtor
     public ColaboradorService(ColaboradorRepositorio repositorioColaborador){
@@ -30,6 +32,7 @@ public class ColaboradorService {
     public Colaborador buscaColaborador(int id){
         Optional<Colaborador> colaborador = this.repositorioColaborador.findById(id);
         if(colaborador.isPresent()){
+            System.out.println("ID do colaborador encontrado (Busca): " + colaborador.get().getId());
             return colaborador.get();
         }else{
             throw new RuntimeException("Usuário não encontrado: " + id);
@@ -38,8 +41,13 @@ public class ColaboradorService {
 
     //----- CRIAR COLABORADOR  C
     public Colaborador criarColaborador(Colaborador colaborador){
-        colaborador.setId(null);
-        return repositorioColaborador.save(colaborador);
+        // colaborador.setId(null);
+        Colaborador novoColaborador =  repositorioColaborador.save(colaborador);
+
+        // Imprimir o ID do colaborador criado
+        System.out.println("ID do colaborador criado: " + novoColaborador.getId());
+
+        return novoColaborador;
     }
 
     ///-----Editar colaborador Update
