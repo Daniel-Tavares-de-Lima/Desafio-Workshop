@@ -1,66 +1,100 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Colaboradores</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="stylesGlobal/styles.css" />
+    <link rel="stylesheet" href="stylesResponsive/stylesResponsive.css" />
     <script src="script.js"></script>
+    <script src="./scriptResponsive/app.js"></script>
     <script src="https://kit.fontawesome.com/267d026f07.js" crossorigin="anonymous"></script>
-  </head>
-  <body>
-    <main class="container">
-      <!----Colunas para Escolha entre Tela de Colaboradores e Tela de Workshop-->
-      <section class="coluna">
+</head>
+<body>
+
+<!-- Header (TelaWidth <= 768px) -->
+<nav>
+    <div class="titulo">
+        <h1 style="font-size: 26px; color: #fff;">Meu Projeto Workshop</h1>
+    </div>
+
+    <div class="abraMenu">
+        <i class="fa fa-bars" style="color: #fff; font-size: 25px; cursor: pointer;"></i>
+    </div>
+
+    <ul class="mainMenu" style="display: none;"> 
+      <h1 style="font-size: 26px; color: #fff;">Meu Projeto Workshop</h1>
+
+      
+        <li>
+            <div class="icone">
+                <i class="fa-solid fa-users" style="font-size: 22px; margin-left: 5px;"></i>
+                <a href="./indexColaboradores.html">Colaboradores</a>
+            </div>
+        </li>
+        <li>
+            <div class="icone">
+                <i class="fa-solid fa-sitemap" style="font-size: 22px; margin-left: 5px;"></i>
+                <a href="./indexWorkshop.html">Workshops</a>
+            </div>
+        </li>
+        <li class="fechaMenu" style="cursor: pointer;">
+            <i class="fa fa-times" style="font-size: 25px; color: #fff;"></i>
+        </li>
+    </ul>
+</nav>
+
+<main class="container">
+    <section class="coluna">
         <div class="quadrado">
-          <div class="titulo">
-            <h1>Meu Projeto Workshop</h1>
-          </div>
-
-          <!---Colaboradores - Workshop-->
-          <div class="escolha">
-            <!---Opção Colaboradores-->
-            <div class="opcao">
-              <i class="fa-solid fa-users" style="font-size: 22px; margin-left: 5px;"></i>
-              <a href="./indexColaboradores.html">Colaboradores</a>
+            <div class="titulo">
+                <h1>Meu Projeto Workshop</h1>
             </div>
 
-            <!----Opção Workshop---->
-            <div class="opcao">
-              <i class="fa-solid fa-sitemap" style="font-size: 22px; margin-left: 5px;"></i>
-              <a href="./indexWorkshop.html">Workshop</a>
+
+             <!---Colaboradores - Workshop-->
+            <div class="escolha">
+              <!---Opção Colaboradores-->
+              <div class="opcao">
+                <i class="fa-solid fa-users" style="font-size: 22px; margin-left: 5px;"></i>
+                <a href="./indexColaboradores.html">Colaboradores</a>
+              </div>
+
+              <!----Opção Workshop---->
+              <div class="opcao">
+                <i class="fa-solid fa-sitemap" style="font-size: 22px; margin-left: 5px;"></i>
+                <a href="./indexWorkshop.html">Workshop</a>
+              </div>
             </div>
           </div>
         </div>
-      </section>
+    </section>
 
-      <!---Section para Demonstração das Listas-->
-      <section class="lista">
+    <section class="lista">
         <div class="listaContainer">
-          <h1>Colaboradores</h1>
+            <h1>Colaboradores</h1>
 
-          <!--Lista dos Colaboradores-->
-          <div class="listaColaboradores">
-
-            <!---Tabela de Colaboradores-->
-            <table id="tabelaColaboradores">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Nome</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th></th>
-                  <th></th>
-                </tr>
-              </tbody>
-            </table>
-
-          </div>
+            <!-- Lista dos Colaboradores -->
+            <div class="listaColaboradores">
+                <table id="tabelaColaboradores">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-      </section>
-    </main>
-  </body>
+    </section>
+</main>
+
+<script src="script.js"></script>
+</body>
 </html>
