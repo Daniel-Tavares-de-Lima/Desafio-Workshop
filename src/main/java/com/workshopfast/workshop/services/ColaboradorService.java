@@ -10,7 +10,6 @@ import com.workshopfast.workshop.models.Colaborador;
 import com.workshopfast.workshop.repositories.ColaboradorRepositorio;
 
 
-
 @Service
 public class ColaboradorService {
     @Autowired
@@ -41,7 +40,7 @@ public class ColaboradorService {
 
     //----- CRIAR COLABORADOR  C
     public Colaborador criarColaborador(Colaborador colaborador){
-        // colaborador.setId(null);
+        // Salva o novo Colaborador no repositório
         Colaborador novoColaborador =  repositorioColaborador.save(colaborador);
 
         // Imprimir o ID do colaborador criado
@@ -49,13 +48,6 @@ public class ColaboradorService {
 
         return novoColaborador;
     }
-
-    ///-----Editar colaborador Update
-    // public Colaborador editarColaborador(Colaborador colaborador){
-    //     Colaborador novoColaborador = buscaColaborador(colaborador.getId());
-    //     novoColaborador.setNome(novoColaborador.getNome());
-    //     return this.repositorioColaborador.save(novoColaborador);
-    // }
 
     public Colaborador editarColaborador(Colaborador colaborador) {
         // Busca o colaborador existente pelo ID
@@ -75,6 +67,7 @@ public class ColaboradorService {
    
     //----- Excluir o Colaborador - DELETE
     public void deletarColaborador(int id){
+        //---Busca o colaborador pelo ID para garantir que ele existe
         buscaColaborador(id);
 
         //--- Caso a Entidade esteja relacionado com outra entidade(Tem chance de dar erro)
@@ -85,13 +78,4 @@ public class ColaboradorService {
         }
     }
 
-
-
-    // // ----- APAGAR COLABORADOR  D
-    // @DeleteMapping("/{id}")
-    // public Optional<Colaborador> excluirColaborador(@PathVariable Integer id){
-    //     Optional<Colaborador> colaborador = repositorioColaborador.findById(id);
-    //     repositorioColaborador.deleteById(id);
-    //     return colaborador;
-    // };
 }

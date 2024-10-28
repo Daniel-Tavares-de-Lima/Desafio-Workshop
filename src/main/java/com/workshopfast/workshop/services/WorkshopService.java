@@ -16,7 +16,6 @@ public class WorkshopService {
     private WorkshopRepositorio workshopRepositorio;
 
    
-
     //----Buscar Workshop READ
     public Workshop buscaWorkshop(int id){
         Optional<Workshop> workshop = this.workshopRepositorio.findById(id);
@@ -34,18 +33,10 @@ public class WorkshopService {
 
     //----Criar Workshop CREATE
     public Workshop criarWorkshop(Workshop workshop){
-        // workshop.setId(null);
+        // Salva o novo workshop no repositório
         workshop = this.workshopRepositorio.save(workshop);
         return workshop;
     }
-
-
-    //---- Editar Workshop Update
-    // public Workshop editarWorkshop(Workshop workshop){
-    //     Workshop novoWorkshop = buscaWorkshop(workshop.getId());
-    //     novoWorkshop.SetDescricao(workshop.getDescricao());
-    //     return this.workshopRepositorio.save(novoWorkshop);
-    // }
 
     public Workshop editarWorkshop(Workshop workshop) {
         // Busca o workshop existente pelo ID
@@ -65,6 +56,7 @@ public class WorkshopService {
 
     //------ Deletar Workshop Delete
     public void deletarWorkshop(int id){
+        //--Busca o workshop pelo ID para garantir que ele existe
         buscaWorkshop(id);
         try{
             this.workshopRepositorio.deleteById(id);
@@ -72,7 +64,6 @@ public class WorkshopService {
             throw new RuntimeException("Não foi possivel deletar o workshop(ENTIDADE RELACIONADAS)");
         }
     }
-
 
     
 }

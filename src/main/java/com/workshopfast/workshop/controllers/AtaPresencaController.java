@@ -18,6 +18,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 
 @RestController
+//---Define o ENDPOINT para este controlador
 @RequestMapping("/ata-de-presenca")
 public class AtaPresencaController {
     

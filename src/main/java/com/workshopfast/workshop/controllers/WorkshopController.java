@@ -15,15 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import com.workshopfast.workshop.models.Workshop;
 import com.workshopfast.workshop.services.WorkshopService;
-
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-
 import javax.validation.Valid;
 
 @RestController
-//----ENDPOINT
+//----Define o ENDPOINT base para este controlador
 @RequestMapping("/workshop")
 public class WorkshopController {
 
@@ -31,7 +29,7 @@ public class WorkshopController {
     @Autowired
     private WorkshopService workshopService;
 
-    //-----Busca Os Workshops READ--
+    //-----Busca um Workshops pelo ID(READ)--
      @Operation(summary = "Busca um workshop pelo ID", description = "Retorna os detalhes de um workshop específico com o ID fornecido.")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Retorna o workshop quando o ID é encontrado."),
@@ -44,7 +42,7 @@ public class WorkshopController {
         return ResponseEntity.ok(workshop);
     }
 
-     //----Busca todos os Colaboradores READ
+     //----Busca todos os Colaboradores (READ)
      @GetMapping() //ENDPOINT TESTADA E FUNCIONANDO
      @Operation(summary = "Lista todos os workshops", description = "Retorna uma lista de todos os workshops.")
     public ResponseEntity<List<Workshop>> todosWorkshop(){
@@ -53,7 +51,7 @@ public class WorkshopController {
     }
 
 
-    //---Criar Workshop CREATE
+    //---Cria um Workshop (CREATE)
     @Operation(summary = "Cria um novo workshop", description = "Cria um novo workshop com os dados fornecidos.")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "201", description = "Workshop criado com sucesso."),
@@ -66,7 +64,7 @@ public class WorkshopController {
    }
 
 
-   //----EDITAR O WORKSHOP UPDATE
+   //----EDITAR O WORKSHOP (UPDATE)
    @Operation(summary = "Edita um workshop existente", description = "Atualiza os dados de um workshop existente com o ID fornecido.")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "204", description = "Workshop atualizado com sucesso."),
@@ -80,7 +78,7 @@ public class WorkshopController {
    }
 
 
-   //--DELETAR WORKSHOP DELETE
+   //--DELETAR WORKSHOP (DELETE)
    @Operation(summary = "Deleta um workshop", description = "Remove um workshop existente com o ID fornecido.")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "204", description = "Workshop deletado com sucesso."),

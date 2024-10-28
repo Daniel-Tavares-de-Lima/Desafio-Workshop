@@ -1,7 +1,7 @@
 package com.workshopfast.workshop.services;
 
+/*---------IMPORTS----------- */
 import java.util.List;
-
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -70,20 +70,9 @@ public class AtaPresencaService {
         // Salvar a ata no repositório e retornar a instância salva
         return ataPresencaRepositorio.save(novaAta);
     }
+    
 
-   //-----Editar colaborador Update
-    // public AtaPresenca editarAta(AtaPresenca ataNova){
-    //     // ataNova.setId(id);
-    //     // return ataPresencaRepositorio.save(ataNova);
-
-    //     if (ataNova.getId() == null || !ataPresencaRepositorio.existsById(ataNova.getId())){
-    //         throw new EntityNotFoundException("Ata de Presença não encontrada");
-    //     }
-
-    //     return ataPresencaRepositorio.save(ataNova);
-    // }
-
-
+    //----Editar Ata de Presença Update
     public AtaPresenca editarAtaPresentes(AtaPresenca presentes){
         AtaPresenca novaAta = buscaPresentesId(presentes.getId());
         // novaAta.setNome(novaAta.getNome());
@@ -93,6 +82,7 @@ public class AtaPresencaService {
 
     //-----Excluir Ata DELETE
     public void deletarAtaPresentes(int id){
+        // Busca a ata de presença pelo ID para garantir que ela existe
         buscaPresentesId(id);
 
         //--- Caso a Entidade esteja relacionado com outra entidade(Tem chance de dar erro)
@@ -102,13 +92,6 @@ public class AtaPresencaService {
             throw new RuntimeException("Não foi possível exlcuir a Ata de Presentes");
         }
     }
-
-
-
-    // // Método para buscar colaboradores presentes em um workshop específico
-    // public List<AtaPresenca> buscarPorWorkshopId(int workshopId) {
-    //     return ataPresencaRepositorio.findByWorkshopId(workshopId);
-    // }
 
 
 }

@@ -15,31 +15,26 @@ import java.util.Date;
 @Table(name = "workshop")
 public class Workshop {
     
+    //-----Coluna Id
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = true) // ---- NotNull
     private Integer id;
 
+    //----Coluna Nome
     @Column(name = "nome", nullable = true)
     private String nome;
 
+    //---Coluna DataDeRealização
     @Temporal(TemporalType.DATE)
     @Column(name = "dataRealizacao", nullable = true)
     private Date dataRealizacao;
 
+    //----Coluna Descrição
     @Column(name = "descricao")
     private String descricao;
 
-
-    public Workshop(){
-
-    }
-
-    public Workshop(String nome, Date dataRealizacao, String descricao){
-        this.nome = nome;
-        this.dataRealizacao = dataRealizacao;
-        this.descricao = descricao;
-    }
+     
     /*---GETS */
 
     public Integer getId(){

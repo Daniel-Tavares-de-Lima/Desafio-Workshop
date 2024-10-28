@@ -7,7 +7,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -23,7 +22,7 @@ public class Colaborador {
     @Column(name = "id", nullable = true) // ---- NotNull
     private Integer id;
 
-
+    //----Coluna Nome
     @Column(name = "nome", length = 100, nullable = true) // -- 100 Caracteres, NotNull
     @NotNull
     @NotEmpty
@@ -37,10 +36,6 @@ public class Colaborador {
         this.nome = nome;
     }
 
-    @ManyToOne
-    private AtaPresenca ataPresenca;
-    // @OneToMany(mappedBy = "colaborador", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    // private List<AtaPresenca> atasDePresenca;
     /*------GETS */
     public Integer getId(){
         return id;

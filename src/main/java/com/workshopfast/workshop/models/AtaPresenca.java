@@ -14,19 +14,22 @@ import jakarta.persistence.Table;
 @Table(name = "ata_de_presenca")
 public class AtaPresenca {
     
+    //---Coluna Id
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Integer id;
 
-
+    //-----Coluna ColaboradorID
     @ManyToOne
     @JoinColumn(name = "colaborador_id", nullable = false)//---nome Da Coluna, NotNull = False
     private Colaborador colaborador;
 
+    //----Coluna WorkshopId
     @ManyToOne
     @JoinColumn(name = "workshop_id", nullable = false) //---nome Da Coluna, NotNull = False
     private Workshop workshop;
 
+    //-----Coluna esta Presente
     @Column(name = "presente", columnDefinition = "BOOLEAN DEFAULT FALSE", nullable = false)
     private Boolean presente;
 
