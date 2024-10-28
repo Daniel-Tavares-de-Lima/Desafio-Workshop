@@ -56,11 +56,11 @@ function workshop(){
 function mostrarDetalhesWorkshop(event, workshopId) {
     event.preventDefault();
 
-    const workshopsTableBody = document.querySelector("#tabelaWorkshop tbody");
-    const existingDetailsRow = document.querySelector(`.details-row[data-workshop-id="${workshopId}"]`);
+    const workshopTabela = document.querySelector("#tabelaWorkshop tbody");
+    const verificaDetalhesLinha = document.querySelector(`.details-row[data-workshop-id="${workshopId}"]`);
     
-    if (existingDetailsRow) {
-        const detailsContent = existingDetailsRow.querySelector(".details-content");
+    if (verificaDetalhesLinha) {
+        const detailsContent = verificaDetalhesLinha.querySelector(".details-content");
         detailsContent.classList.toggle("show");
         return;
     }
@@ -68,14 +68,12 @@ function mostrarDetalhesWorkshop(event, workshopId) {
     console.log("Workshop ID para busca de presença:", workshopId);
     
     // Faz a requisição para obter a ata de presença do workshop específico
-    fetch(`${url}/ata-de-presenca/${workshopId}`)
-        .then(response => {
+    fetch(`${url}/ata-de-presenca/${workshopId}`).then(response => {
             if (!response.ok) {
                 throw new Error("Erro na resposta do servidor.");
             }
             return response.json();
-        })
-        .then(presenca => {
+        }).then(presenca => {
             // Confirma se presenca é um objeto
             if (typeof presenca !== 'object' || presenca === null) {
                 console.error("Erro: resposta não é um objeto de presença");
@@ -85,11 +83,11 @@ function mostrarDetalhesWorkshop(event, workshopId) {
             // Coloca a presença em um array para facilitar o tratamento
             const ataDePresenca = [presenca]; // Transformando o objeto em um array
 
-            const detailsRow = document.createElement("tr");
-            detailsRow.classList.add("details-row");
-            detailsRow.setAttribute("data-workshop-id", workshopId);
+            const detalhesLinha = document.createElement("tr");
+            detalhesLinha.classList.add("details-row");
+            detalhesLinha.setAttribute("data-workshop-id", workshopId);
 
-            detailsRow.innerHTML = `
+            detalhesLinha.innerHTML = `
                 <td colspan="3">
                     <div class="details-content">
                         <h2>Detalhes do Workshop ${workshopId}</h2>
@@ -120,12 +118,11 @@ function mostrarDetalhesWorkshop(event, workshopId) {
             `;
 
             const workshopRow = event.target.closest("tr");
-            workshopRow.insertAdjacentElement("afterend", detailsRow);
+            workshopRow.insertAdjacentElement("afterend", detalhesLinha);
 
-            const detailsContent = detailsRow.querySelector(".details-content");
+            const detailsContent = detalhesLinha.querySelector(".details-content");
             setTimeout(() => detailsContent.classList.add("show"), 10);
-        })
-        .catch(error => console.error("Erro ao buscar detalhes do workshop:", error));
+        }).catch(error => console.error("Erro ao buscar detalhes do workshop:", error));
 }
 
 

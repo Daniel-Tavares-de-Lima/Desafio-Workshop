@@ -130,6 +130,7 @@ a:hover{
 
 
 #workshopDetalhes {
+    display: none;
     background-color: #fff;
     padding: 10px;
     border: 1px solid #ddd;
@@ -137,3 +138,17 @@ a:hover{
 }
 
 
+  /* Estilo inicial para detalhes escondidos */
+  .details-content {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.5s ease-out;
+    padding: 0 10px; /* Padding para conteúdo */
+    background-color: #f9f9f9;
+    border-top: 1px solid #ddd;
+}
+
+/* Classe para expandir os detalhes */
+.details-content.show {
+    max-height: 300px; /* Ajuste conforme o conteúdo; altura máxima */
+}
