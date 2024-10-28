@@ -53,16 +53,20 @@ public class ColaboradorController{
     @GetMapping("/{id}") //---ENDPOINT TESTADA E FUNCIONANDO
     public ResponseEntity<Colaborador> buscaColaborador(@PathVariable int id){
         Colaborador colaborador = this.colaboradorService.buscaColaborador(id);
+
+        if(colaborador == null){
+            return ResponseEntity.notFound().build();
+        }
         return ResponseEntity.ok().body(colaborador);
     }
 
 
-    //----Busca todos os Colaboradores READ
-    @GetMapping("/colaboradores/{id}")
-    public ResponseEntity<List<Colaborador>> todosColaboradores(){
-        List<Colaborador> colaboradores = this.colaboradorService.todosColaboradores();
-        return ResponseEntity.ok(colaboradores);
-    }
+    // //----Busca todos os Colaboradores READ
+    // @GetMapping("/colaboradores/{id}")
+    // public ResponseEntity<List<Colaborador>> todosColaboradores(){
+    //     List<Colaborador> colaboradores = this.colaboradorService.todosColaboradores();
+    //     return ResponseEntity.ok(colaboradores);
+    // }
     
 
     //----Criar Colaborador CREATE

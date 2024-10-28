@@ -103,4 +103,12 @@ public class AtaPresencaService {
         }
     }
 
+
+
+    // // Método para buscar colaboradores presentes em um workshop específico
+    // public List<AtaPresenca> buscarPorWorkshopId(int workshopId) {
+    //     return ataPresencaRepositorio.findByWorkshopId(workshopId);
+    // }
+
+
 }

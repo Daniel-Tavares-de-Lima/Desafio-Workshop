@@ -38,7 +38,6 @@ public class AtaPresencaController {
 
     
     //-----Lista por Id
-
     @GetMapping("/{id}")
     @Operation(description = "Busca uma ata de presença pelo ID")
     @ApiResponses(value = {
@@ -64,4 +63,6 @@ public class AtaPresencaController {
         this.ataPresencaService.deletarAtaPresentes(id);
         return ResponseEntity.noContent().build();
    }
+
+
 }
