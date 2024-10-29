@@ -70,7 +70,6 @@ function mostrarDetalhesWorkshop(event, workshopId) {
                 console.error("Erro: resposta não é um objeto de presença");
                 return;
             }
-
             const detalhesLinha = document.createElement("tr");
             detalhesLinha.classList.add("details-row");
             detalhesLinha.setAttribute("data-workshop-id", workshopId);
@@ -100,7 +99,7 @@ function mostrarDetalhesWorkshop(event, workshopId) {
                     </tbody>
                 </table>
             `;
-
+            ///----Cria o detalhe do workshop
             detalhesLinha.innerHTML = `
                 <td colspan="3">
                     <div class="details-content">
