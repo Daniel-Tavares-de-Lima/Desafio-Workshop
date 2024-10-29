@@ -143,6 +143,6 @@ Versões instaladas na minha máquina
 - **DELETE /ata-de-presenca/{id}** - Remove uma ata de presença pelo ID.
 
 ## 5. Banco de Dados MER E MR
-![DEMONSTRACION](https://github.com/Daniel-Tavares-de-Lima/Desafio-Workshop/blob/main/Modelo%20Relacional%20Projeto%20Workshop.png)
-
 ![DEMONSTRACION](https://github.com/Daniel-Tavares-de-Lima/Desafio-Workshop/blob/main/Modelo%20de%20Entidade%20Relacional%20Projeto%20Workshop.png)
+
+![DEMONSTRACION](https://github.com/Daniel-Tavares-de-Lima/Desafio-Workshop/blob/main/Modelo%20Relacional%20Projeto%20Workshop.png)
