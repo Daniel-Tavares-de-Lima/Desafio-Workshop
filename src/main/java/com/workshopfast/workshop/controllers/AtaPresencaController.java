@@ -29,6 +29,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 
 import java.util.Optional;
+import java.util.Set;
 
 
 
@@ -51,7 +52,7 @@ public class AtaPresencaController {
 
     //---Lista todas as atas de presença
     @GetMapping
-    @Operation(description = "Lista todas as atas de presença")
+    @Operation(summary = "Lista todas as atas", description = "Lista todas as atas de presença")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Atas de presença listadas com sucesso"),
         @ApiResponse(responseCode = "500", description = "Erro interno ao listar as atas de presença")
@@ -64,7 +65,7 @@ public class AtaPresencaController {
     
     //-----Lista por Id
     @GetMapping("/{id}")
-    @Operation(description = "Busca uma ata de presença pelo ID")
+    @Operation(summary = "Busca pelo Id",description = "Busca uma ata de presença pelo ID")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description =  "Ata de presença encontrada"),
         @ApiResponse(responseCode = "404", description = "Ata de presença não encontrada"),
@@ -77,16 +78,27 @@ public class AtaPresencaController {
 
 
     //----METODO CRIAR ATA COM PROBLEMAS (EXPLICAÇÃO NA DOCUMENTAÇÃO FORNECIDA NO REPOSITORIO NO GITHUB EM PDF)
-    // @PostMapping
-    // public ResponseEntity<AtaPresenca> salvar(@RequestBody @Valid AtaPresencaDT ataDePresenca) {
-    //     // Valida e cria a ata de presença com a lógica de verificações
-    //     AtaPresenca ataCriada = ataPresencaService.criarAta(ataDePresenca);
-    //     return ResponseEntity.status(HttpStatus.CREATED).body(ataCriada);
-    // }
-
+    @Operation( summary = "Cria uma ata de Presença",description = "Este endpoint salva uma nova presença de ata.")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Presença salva com sucesso"),
+        @ApiResponse(responseCode = "400", description = "Requisição inválida"),
+        @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
+    })
+   @PostMapping
+   public ResponseEntity<AtaPresenca> salvarPresenca(@RequestBody AtaPresenca ataPresenca){
+        AtaPresenca novaAtaPresenca = ataPresencaService.salvarAtaPresenca(ataPresenca);
+        return ResponseEntity.ok(novaAtaPresenca);
+   }
 
 
   // Método PUT para atualizar uma Ata de Presença existente
+  @Operation(summary = "Atualizar Ata de Presença", description = "Este endpoint atualiza uma ata de presença existente com base no ID fornecido.")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Ata atualizada com sucesso"),
+        @ApiResponse(responseCode = "404", description = "Ata não encontrada"),
+        @ApiResponse(responseCode = "400", description = "Requisição inválida"),
+        @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
+    })
    @PutMapping("/{id}")
         public ResponseEntity<AtaPresenca> atualizarAta(@PathVariable Integer id, @RequestBody AtaPresencaDT ataPresencaDT) {
         // Busca a ata existente pelo ID
@@ -99,25 +111,18 @@ public class AtaPresencaController {
 
         AtaPresenca ataPresenca = existiAta.get();
 
-        // Atualiza o status de presença se fornecido
-        if (ataPresencaDT.getPresente() != null) {
-            ataPresenca.setPresente(ataPresencaDT.getPresente());
-        } else {
-            return ResponseEntity.badRequest().body(null); // Retorna erro caso `presente` esteja nulo
-    }
-
         // Atualiza o colaborador e workshop se os IDs estiverem presentes
         if (ataPresencaDT.getColaboradorId() != null) {
             Colaborador colaborador = colaboradorService.buscaColaborador(ataPresencaDT.getColaboradorId());
             if (colaborador != null) {
-                ataPresenca.setColaborador(colaborador);
+                ataPresenca.setColaboradores(Set.of(colaborador));
             }
         }
     
         if (ataPresencaDT.getWorkshopId() != null) {
             Workshop workshop = workshopService.buscaWorkshop(ataPresencaDT.getWorkshopId());
             if (workshop != null) {
-                ataPresenca.setWorkshop(workshop);
+                ataPresenca.setWorkshops(Set.of(workshop));
             }
         }
 
@@ -129,7 +134,7 @@ public class AtaPresencaController {
 
    //----Deletar Ata de Presentes
     @DeleteMapping("/{id}")
-    @Operation(description = "Deleta uma ata de presença pelo ID")
+    @Operation(summary = "Deleta uma ata", description = "Deleta uma ata de presença pelo ID")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "204", description = "Ata de presença deletada com sucesso"),
         @ApiResponse(responseCode = "404", description = "Ata de presença não encontrada"),

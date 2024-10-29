@@ -3,6 +3,8 @@ package com.workshopfast.workshop.services;
 /*---------IMPORTS----------- */
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.workshopfast.workshop.models.AtaPresenca;
@@ -46,33 +48,35 @@ public class AtaPresencaService {
 
     
     //----METODO CRIAR ATA COM PROBLEMAS (EXPLICAÇÃO NA DOCUMENTAÇÃO FORNECIDA NO REPOSITORIO NO GITHUB EM PDF)
-    // public AtaPresenca criarAta(AtaPresencaDT dto) {
-    //     // Verifica se os IDs de colaborador e workshop foram fornecidos
-    //     if (dto.getColaboradorId() == null || dto.getWorkshopId() == null) {
-    //         throw new IllegalArgumentException("IDs de colaborador e workshop são obrigatórios e não podem ser nulos");
-    //     }
+    public AtaPresenca criarAta(AtaPresencaDT dto) {
+        // Verifica se os IDs de colaborador e workshop foram fornecidos
+        if (dto.getColaboradorId() == null || dto.getWorkshopId() == null) {
+            throw new IllegalArgumentException("IDs de colaborador e workshop são obrigatórios e não podem ser nulos");
+        }
 
-    //     // Busca o colaborador pelo ID; lança exceção se não encontrado
-    //     Colaborador colaborador = colaboradorRepositorio.findById(dto.getColaboradorId()).orElseThrow(() -> new IllegalArgumentException("Colaborador com ID " + dto.getColaboradorId() + " não encontrado"));
+        // Busca o colaborador pelo ID; lança exceção se não encontrado
+        Colaborador colaborador = colaboradorRepositorio.findById(dto.getColaboradorId()).orElseThrow(() -> new IllegalArgumentException("Colaborador com ID " + dto.getColaboradorId() + " não encontrado"));
 
-    //     // Busca o workshop pelo ID; lança exceção se não encontrado
-    //     Workshop workshop = workshopRepositorio.findById(dto.getWorkshopId()).orElseThrow(() -> new IllegalArgumentException("Workshop com ID " + dto.getWorkshopId() + " não encontrado"));
+        // Busca o workshop pelo ID; lança exceção se não encontrado
+        Workshop workshop = workshopRepositorio.findById(dto.getWorkshopId()).orElseThrow(() -> new IllegalArgumentException("Workshop com ID " + dto.getWorkshopId() + " não encontrado"));
 
-    //     // Verifica se o campo 'presente' é fornecido; caso contrário, atribui um valor padrão (como 'false')
-    //     Boolean presente = dto.getPresente() != null ? dto.getPresente() : false;
+        // Verifica se o campo 'presente' é fornecido; caso contrário, atribui um valor padrão (como 'false')
+        // Boolean presente = dto.getPresente() != null ? dto.getPresente() : false;
 
-    //     // Cria uma nova instância de AtaPresenca e define os campos
-    //     AtaPresenca ataPresenca = new AtaPresenca();
-    //     ataPresenca.setColaborador(colaborador);
-    //     ataPresenca.setWorkshop(workshop);
-    //     ataPresenca.setPresente(presente);
+        // Cria uma nova instância de AtaPresenca e define os campos
+        AtaPresenca ataPresenca = new AtaPresenca();
+        ataPresenca.setColaboradores(Set.of(colaborador));
+        ataPresenca.setWorkshops(Set.of(workshop));
+        // ataPresenca.setPresente(presente);
 
-    //     // Salva e retorna a nova ata de presença
-    //     return ataPresencaRepositorio.save(ataPresenca);
-    // }
+        // Salva e retorna a nova ata de presença
+        return ataPresencaRepositorio.save(ataPresenca);
+    }
       
       
-    
+    public AtaPresenca salvarAtaPresenca(AtaPresenca presenca){
+        return ataPresencaRepositorio.save(presenca);
+    }
 
     //----Editar Ata de Presença Update
     public AtaPresenca editarAtaPresentes(AtaPresenca presentes){

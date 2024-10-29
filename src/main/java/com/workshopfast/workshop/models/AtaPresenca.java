@@ -1,5 +1,7 @@
 package com.workshopfast.workshop.models;
 
+import java.util.Set;
+
 /*-------Imports------ */
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -7,6 +9,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -20,56 +24,63 @@ public class AtaPresenca {
     private Integer id;
 
     //-----Coluna ColaboradorID
-    @ManyToOne
-    @JoinColumn(name = "colaborador_id", nullable = false)//---nome Da Coluna, NotNull = False
-    private Colaborador colaborador;
-
+    // @ManyToMany
+    // @JoinColumn(name = "colaborador_id", nullable = false)//---nome Da Coluna, NotNull = False
+    // private Colaborador colaborador;
+    @ManyToMany 
+    @JoinTable( name = "colaborador_ata_presenca", joinColumns = @JoinColumn(name = "ata_presenca_id"), inverseJoinColumns = @JoinColumn(name = "colaborador_id") ) 
+    private Set<Colaborador> colaboradores;
     //----Coluna WorkshopId
-    @ManyToOne
-    @JoinColumn(name = "workshop_id", nullable = false) //---nome Da Coluna, NotNull = False
-    private Workshop workshop;
+    // @ManyToMany
+    // @JoinColumn(name = "workshop_id", nullable = false) //---nome Da Coluna, NotNull = False
+    // private Workshop workshop;
+    @ManyToMany 
+    @JoinTable( name = "workshop_ata_presenca", joinColumns = @JoinColumn(name = "ata_presenca_id"), inverseJoinColumns = @JoinColumn(name = "workshop_id") ) 
+    private Set<Workshop> workshops;
 
     //-----Coluna esta Presente
-    @Column(name = "presente", columnDefinition = "BOOLEAN DEFAULT FALSE", nullable = false)
-    private Boolean presente;
+    // @Column(name = "presente", columnDefinition = "BOOLEAN DEFAULT FALSE", nullable = false)
+    // private Boolean presente;
 
-    
 
-    /*----GETS */
     public Integer getId() {
-        return id;
+        return this.id;
     }
 
-    public Colaborador getColaborador() {
-        return colaborador;
-    }
-
-    public Workshop getWorkshop() {
-        return workshop;
-    }
-
-
-    public Boolean getPresente() {
-        return presente;
-    }
-
-
-    /*----SETS */
     public void setId(Integer id) {
         this.id = id;
     }
 
-    public void setColaborador(Colaborador colaborador) {
-        this.colaborador = colaborador;
+    public Set<Colaborador> getColaboradores() {
+        return this.colaboradores;
     }
 
-    public void setWorkshop(Workshop workshop) {
-        this.workshop = workshop;
+    public void setColaboradores(Set<Colaborador> colaboradores) {
+        this.colaboradores = colaboradores;
     }
 
-    public void setPresente(Boolean presente) {
-        this.presente = presente;
+    public Set<Workshop> getWorkshops() {
+        return this.workshops;
     }
+
+    public void setWorkshops(Set<Workshop> workshops) {
+        this.workshops = workshops;
+    }
+
+    // public Boolean isPresente() {
+    //     return this.presente;
+    // }
+
+    // public Boolean getPresente() {
+    //     return this.presente;
+    // }
+
+    // public void setPresente(Boolean presente) {
+    //     this.presente = presente;
+    // }
+    
+
+    
 
 
 }

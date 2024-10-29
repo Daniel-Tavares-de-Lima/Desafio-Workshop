@@ -7,7 +7,7 @@ fetch(`${url}/colaboradores`).then(responde => responde.json()).then(data =>{
 });
 
   //---APENAS PARA TESTE, VERIFICA OS DADOS
-  fetch(`${url}/workshops`).then(response => response.json()).then(workshops => {workshops.forEach(workshop => {
+  fetch(`${url}/workshop`).then(response => response.json()).then(workshops => {workshops.forEach(workshop => {
         console.log(`Data formatada: ${formatDate(workshop.dataRealizacao)}`);});
 });
 
@@ -39,12 +39,12 @@ function workshop(){
     fetch(`${url}/workshop`).then(response => response.json()).then(workshops =>{
         const tabelaWorkshop = document.querySelector("#tabelaWorkshop tbody");
         tabelaWorkshop.innerHTML = "";
-        workshops.forEach(workshopTaag =>{
+        workshops.forEach(workshopTag =>{
             const linha = document.createElement("tr");
             linha.innerHTML = `
-                <td>${workshopTaag.id}</td>
-                <td onclick="mostrarDetalhesWorkshop(event, ${workshopTaag.id})" style="cursor: pointer;">${workshopTaag.nome}</td>
-                <td>${formatDate(workshopTaag.dataRealizacao)}</td>
+                <td>${workshopTag.id}</td>
+                <td onclick="mostrarDetalhesWorkshop(event, ${workshopTag.id})" style="cursor: pointer;">${workshopTag.nome}</td>
+                <td>${formatDate(workshopTag.dataRealizacao)}</td>
             `;
             tabelaWorkshop.appendChild(linha);
 
@@ -80,39 +80,42 @@ function mostrarDetalhesWorkshop(event, workshopId) {
                 return;
             }
 
-            // Coloca a presença em um array para facilitar o tratamento
-            const ataDePresenca = [presenca]; // Transformando o objeto em um array
-
             const detalhesLinha = document.createElement("tr");
             detalhesLinha.classList.add("details-row");
             detalhesLinha.setAttribute("data-workshop-id", workshopId);
+
+            // Cria a tabela com os dados de presença
+            const tabelaPresenca = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome do Colaborador</th>
+                            <th>Nome do Workshop</th>
+                            <th>Data de Realização</th>
+                            <th>Descrição</th>
+                            <th>Presente</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>${presenca.id}</td>
+                            <td>${presenca.colaborador.map(colab => colab.nome).join(", ")}</td>
+                            <td>${presenca.workshop.map(ws => ws.nome).join(", ")}</td>
+                            <td>${new Date(presenca.workshop[0].dataRealizacao).toLocaleString()}</td>
+                            <td>${presenca.workshop[0].descricao}</td>
+                            <td>${presenca.presente ? "Sim" : "Não"}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            `;
 
             detalhesLinha.innerHTML = `
                 <td colspan="3">
                     <div class="details-content">
                         <h2>Detalhes do Workshop ${workshopId}</h2>
                         <h3>Colaboradores Presentes:</h3>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Nome</th>
-                                    <th>Presente</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                ${ataDePresenca
-                                    .map(presenca => {
-                                        return `
-                                            <tr>
-                                                <td>${presenca.colaborador.id}</td>
-                                                <td>${presenca.colaborador.nome}</td>
-                                                <td>${presenca.presente ? "Sim" : "Não"}</td>
-                                            </tr>`;
-                                    })
-                                    .join("")}
-                            </tbody>
-                        </table>
+                        ${tabelaPresenca}
                     </div>
                 </td>
             `;
@@ -124,6 +127,7 @@ function mostrarDetalhesWorkshop(event, workshopId) {
             setTimeout(() => detailsContent.classList.add("show"), 10);
         }).catch(error => console.error("Erro ao buscar detalhes do workshop:", error));
 }
+
 
 
 
