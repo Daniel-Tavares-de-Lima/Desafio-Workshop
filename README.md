@@ -128,15 +128,19 @@ Versões instaladas na minha máquina
 
 ## 4. Endpoints
 ### Colaboradores
-- GET /api/colaboradores - Lista todos os colaboradores
-- POST /api/colaboradores - Adiciona um novo colaborador
-- PUT /api/colaboradores/{id} - Atualiza as informações de um colaborador
-- DELETE /api/colaboradores/{id} - Remove um colaborador
+- **GET /api/colaboradores** - Lista todos os colaboradores
+- **POST /api/colaboradores** - Adiciona um novo colaborador
+- **PUT /api/colaboradores/{id}** - Atualiza as informações de um colaborador
+- **DELETE /api/colaboradores/{id}** - Remove um colaborador
 ### Workshops
-- GET /api/workshops - Lista todos os workshops
-- POST /api/workshops - Adiciona um novo workshop
-- PUT /api/workshops/{id} - Atualiza as informações de um workshop
+- **GET /api/workshops** - Lista todos os workshops
+- **POST /api/workshops** - Adiciona um novo workshop
+- **PUT /api/workshops/{id}** - Atualiza as informações de um workshop
 - DELETE /api/workshops/{id} - Remove um workshop
+### Ata de Presença
+- **GET /ata-de-presenca** - Lista todas as atas de presença.
+- **GET /ata-de-presenca/{id}** - Busca uma ata de presença específica pelo ID.
+- **DELETE /ata-de-presenca/{id}** - Remove uma ata de presença pelo ID.
 
 ## 5. Banco de Dados MER E MR
 ![DEMONSTRACION](https://github.com/Daniel-Tavares-de-Lima/Desafio-Workshop/blob/main/Modelo%20Relacional%20Projeto%20Workshop.png)
