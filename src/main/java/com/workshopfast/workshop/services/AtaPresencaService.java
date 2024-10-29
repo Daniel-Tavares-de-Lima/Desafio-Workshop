@@ -14,8 +14,6 @@ import com.workshopfast.workshop.repositories.AtaPresencaRepositorio;
 import com.workshopfast.workshop.repositories.ColaboradorRepositorio;
 import com.workshopfast.workshop.repositories.WorkshopRepositorio;
 import com.workshopfast.workshop.models.AtaPresencaDT;
-import jakarta.persistence.EntityNotFoundException;
-import jakarta.transaction.Transactional;
 
 @Service
 public class AtaPresencaService {

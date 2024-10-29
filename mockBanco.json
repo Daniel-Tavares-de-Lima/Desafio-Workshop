@@ -21,37 +21,37 @@
         "id": 1,
         "nome": "Workshop de JavaScript",
         "dataRealizacao": "2024-11-01T10:00:00Z",
-        "descricao": "Introdução ao JavaScript para iniciantes"
+        "descricao": "Descrição do Workshop"
       },
       {
         "id": 2,
         "nome": "Workshop de Python",
         "dataRealizacao": "2024-12-05T15:00:00Z",
-        "descricao": "Python avançado com foco em análise de dados"
+        "descricao": "Descrição do Workshop diferente"
       },
       {
         "id": 3,
         "nome": "Workshop de Java",
         "dataRealizacao": "2024-11-15T09:00:00Z",
-        "descricao": "Fundamentos de Java para desenvolvedores"
+        "descricao": "Descrição novamente diferenciada"
       },
       {
         "id": 4,
         "nome": "Workshop de C#",
         "dataRealizacao": "2024-11-20T14:00:00Z",
-        "descricao": "Desenvolvimento de aplicações com C#"
+        "descricao": "Descrição Workshop em C#"
       },
       {
         "id": 5,
         "nome": "Workshop de HTML e CSS",
         "dataRealizacao": "2024-11-25T10:00:00Z",
-        "descricao": "Criação de páginas web responsivas"
+        "descricao": "Descrição Workshop novamente"
       },
       {
         "id": 6,
         "nome": "Workshop de Data Science",
         "dataRealizacao": "2024-12-01T11:00:00Z",
-        "descricao": "Introdução à ciência de dados e machine learning"
+        "descricao": "Introdução Descrição Workshop"
       },
       {
         "id": 7,
@@ -63,7 +63,7 @@
         "id": 8,
         "nome": "Workshop de Banco de Dados",
         "dataRealizacao": "2024-12-15T10:30:00Z",
-        "descricao": "Gerenciamento de bancos de dados relacionais"
+        "descricao": "Gerenciamento de banco relacionais"
       },
       {
         "id": 9,
@@ -89,9 +89,10 @@
       "id": 1,
       "nome": "Workshop de JavaScript",
       "dataRealizacao": "2024-11-01T10:00:00Z",
-      "descricao": "Introdução ao JavaScript para iniciantes"
+      "descricao": "Descrição do Workshop"
     }],
     "presente": true
+    
   },
   {
     "id": 2,
@@ -103,7 +104,7 @@
       "id": 1,
       "nome": "Workshop de JavaScript",
       "dataRealizacao": "2024-11-01T10:00:00Z",
-      "descricao": "Introdução ao JavaScript para iniciantes"
+      "descricao": "Descrição do Workshop"
     }],
     "presente": true
   },
@@ -117,7 +118,7 @@
       "id": 1,
       "nome": "Workshop de JavaScript",
       "dataRealizacao": "2024-11-01T10:00:00Z",
-      "descricao": "Introdução ao JavaScript para iniciantes"
+      "descricao": "Descrição do Workshop"
     }],
     "presente": true
   },
@@ -131,7 +132,7 @@
       "id": 2,
       "nome": "Workshop de Python",
       "dataRealizacao": "2024-12-05T15:00:00Z",
-      "descricao": "Python avançado com foco em análise de dados"
+      "descricao": "Descrição do Workshop diferente"
     }],
     "presente": true
   },
@@ -145,7 +146,7 @@
       "id": 2,
       "nome": "Workshop de Python",
       "dataRealizacao": "2024-12-05T15:00:00Z",
-      "descricao": "Python avançado com foco em análise de dados"
+      "descricao": "Descrição do Workshop diferente"
     }],
     "presente": true
   },
@@ -159,7 +160,7 @@
       "id": 3,
       "nome": "Workshop de Java",
       "dataRealizacao": "2024-11-15T09:00:00Z",
-      "descricao": "Fundamentos de Java para desenvolvedores"
+      "descricao": "Descrição novamente diferenciada"
     }],
     "presente": true
   },
@@ -173,7 +174,7 @@
       "id": 3,
       "nome": "Workshop de Java",
       "dataRealizacao": "2024-11-15T09:00:00Z",
-      "descricao": "Fundamentos de Java para desenvolvedores"
+      "descricao": "Descrição novamente diferenciada"
     }],
     "presente": false
   },
@@ -187,7 +188,7 @@
       "id": 4,
       "nome": "Workshop de C#",
       "dataRealizacao": "2024-11-20T14:00:00Z",
-      "descricao": "Desenvolvimento de aplicações com C#"
+      "descricao": "Descrição Workshop em C#"
     }],
     "presente": true
   },
@@ -201,7 +202,7 @@
       "id": 4,
       "nome": "Workshop de C#",
       "dataRealizacao": "2024-11-20T14:00:00Z",
-      "descricao": "Desenvolvimento de aplicações com C#"
+      "descricao": "Descrição Workshop em C#"
     }],
     "presente": true
   },
@@ -215,7 +216,7 @@
       "id": 5,
       "nome": "Workshop de HTML e CSS",
       "dataRealizacao": "2024-11-25T10:00:00Z",
-      "descricao": "Criação de páginas web responsivas"
+      "descricao": "Descrição Workshop novamente"
     }],
     "presente": true
   },
@@ -229,7 +230,7 @@
       "id": 5,
       "nome": "Workshop de HTML e CSS",
       "dataRealizacao": "2024-11-25T10:00:00Z",
-      "descricao": "Criação de páginas web responsivas"
+      "descricao": "Descrição Workshop novamente"
     }],
     "presente": false
   },
@@ -243,7 +244,7 @@
       "id": 6,
       "nome": "Workshop de Data Science",
       "dataRealizacao": "2024-12-01T11:00:00Z",
-      "descricao": "Introdução à ciência de dados e machine learning"
+      "descricao": "Introdução Descrição Workshop"
     }],
     "presente": true
   },
@@ -271,7 +272,7 @@
       "id": 8,
       "nome": "Workshop de Banco de Dados",
       "dataRealizacao": "2024-12-15T10:30:00Z",
-      "descricao": "Gerenciamento de bancos de dados relacionais"
+      "descricao": "Gerenciamento de banco relacionais"
     }],
     "presente": true
   },

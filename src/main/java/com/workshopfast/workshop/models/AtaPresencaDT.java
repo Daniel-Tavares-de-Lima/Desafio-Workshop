@@ -13,9 +13,6 @@ public class AtaPresencaDT {
     @JsonProperty("workshopId")
     private Integer workshopId;
 
-    // @JsonProperty("presente")
-    // private Boolean presente;
-
     // Getters e Setters
     public Integer getColaboradorId() {
         return colaboradorId;
@@ -33,11 +30,4 @@ public class AtaPresencaDT {
         this.workshopId = workshopId;
     }
 
-    // public Boolean getPresente() {
-    //     return presente;
-    // }
-
-    // public void setPresente(Boolean presente) {
-    //     this.presente = presente;
-    // }
 }

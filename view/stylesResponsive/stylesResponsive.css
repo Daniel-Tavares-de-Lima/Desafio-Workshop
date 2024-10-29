@@ -1,5 +1,5 @@
 
-@media(max-width: 768px){
+@media(max-width: 868px){
     nav{
         display: flex;
         justify-content: space-around;
@@ -8,6 +8,10 @@
         background-color: var(--CorPrimaria);
     }
 
+    .container{
+        display: flex;
+        flex-wrap: wrap;
+    }
     .coluna{
         display: none;
     }
@@ -68,7 +72,51 @@
         border-radius: 10px;
     }   
 
+    /*-----TABELA----*/
 
+    
+
+}
+
+/* Tabelas ajustáveis a telas menores que 750px */
+@media (max-width: 750px) {
+
+    .lista .listaContainer h1{
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    table, thead, tbody, th, td, tr {
+        width: 450px;
+        margin: auto;
+    }
+
+    thead tr{
+        width: 450px;
+        display: flex;
+    }
+    tr {
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        display: flex;
+    }
+    td {
+        width: 450px;
+        font-size: 16px;
+    }
+    /* td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        font-weight: bold;
+        text-transform: capitalize;
+    } */
+}
+
+/* Tabelas compactas para telas menores que 600px */
+@media (max-width: 600px) {
+    table td {
+        font-size: 15px;
+    }
 }
 
 @media(max-width: 400px){
@@ -99,6 +147,11 @@
         transition: top 0.5s ease;
         display: none;
 
+    }
+
+    table td {
+        font-size: 0.8em;
+        padding: 8px;
     }
 }
 

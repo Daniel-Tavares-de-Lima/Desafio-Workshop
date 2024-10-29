@@ -1,16 +1,6 @@
 //----URL padrão----
 const url = "http://localhost:8080";
 
-//---APENAS PARA TESTE, VERIFICA OS DADOS
-fetch(`${url}/colaboradores`).then(responde => responde.json()).then(data =>{
-    console.log("Colaboradores DATA:", data).catch(error => console.error("Erro ao buscar workshop:", error))
-});
-
-  //---APENAS PARA TESTE, VERIFICA OS DADOS
-  fetch(`${url}/workshop`).then(response => response.json()).then(workshops => {workshops.forEach(workshop => {
-        console.log(`Data formatada: ${formatDate(workshop.dataRealizacao)}`);});
-});
-
 
  //---Função para formatar a data
 function formatDate(timestamp) {
@@ -20,7 +10,8 @@ function formatDate(timestamp) {
 
 // Função para buscar e exibir a lista de colaboradores
 function colaboradores(){
-    fetch(`${url}/colaboradores`).then(response => response.json()).then(colaborador => {
+    // Faz uma requisição GET para obter a lista de colaboradores.
+    fetch(`${url}/colaboradores`).then(response => response.json()).then(colaborador => { // Converte a resposta em JSON.
         const tabelaColaboradores = document.querySelector("#tabelaColaboradores tbody");
         tabelaColaboradores.innerHTML = "";
         colaborador.forEach(colaboradorTag =>{
@@ -36,7 +27,8 @@ function colaboradores(){
 
 // Função para buscar e exibir a lista de workshops
 function workshop(){
-    fetch(`${url}/workshop`).then(response => response.json()).then(workshops =>{
+    // Faz uma requisição GET para obter a lista de workshops.
+    fetch(`${url}/workshop`).then(response => response.json()).then(workshops =>{ // Converte a resposta em JSON.
         const tabelaWorkshop = document.querySelector("#tabelaWorkshop tbody");
         tabelaWorkshop.innerHTML = "";
         workshops.forEach(workshopTag =>{
@@ -57,22 +49,21 @@ function mostrarDetalhesWorkshop(event, workshopId) {
     event.preventDefault();
 
     const workshopTabela = document.querySelector("#tabelaWorkshop tbody");
-    const verificaDetalhesLinha = document.querySelector(`.details-row[data-workshop-id="${workshopId}"]`);
+    const verificaDetalhesLinha = document.querySelector(`.details-row[data-workshop-id="${workshopId}"]`); // Verifica se já existe uma linha de detalhes.
     
     if (verificaDetalhesLinha) {
+        // Se a linha de detalhes já existir, alterna a visibilidade.
         const detailsContent = verificaDetalhesLinha.querySelector(".details-content");
         detailsContent.classList.toggle("show");
         return;
     }
-
-    console.log("Workshop ID para busca de presença:", workshopId);
     
     // Faz a requisição para obter a ata de presença do workshop específico
     fetch(`${url}/ata-de-presenca/${workshopId}`).then(response => {
             if (!response.ok) {
                 throw new Error("Erro na resposta do servidor.");
             }
-            return response.json();
+            return response.json(); // Converte a resposta em JSON.
         }).then(presenca => {
             // Confirma se presenca é um objeto
             if (typeof presenca !== 'object' || presenca === null) {
@@ -99,12 +90,12 @@ function mostrarDetalhesWorkshop(event, workshopId) {
                     </thead>
                     <tbody>
                         <tr>
-                            <td>${presenca.id}</td>
-                            <td>${presenca.colaborador.map(colab => colab.nome).join(", ")}</td>
-                            <td>${presenca.workshop.map(ws => ws.nome).join(", ")}</td>
-                            <td>${new Date(presenca.workshop[0].dataRealizacao).toLocaleString()}</td>
-                            <td>${presenca.workshop[0].descricao}</td>
-                            <td>${presenca.presente ? "Sim" : "Não"}</td>
+                            <td data-label="ID">${presenca.id}</td>
+                            <td data-label="Nome do Colaborador">${presenca.colaborador.map(colab => colab.nome).join(", ")}</td>
+                            <td data-label="Nome do Workshop">${presenca.workshop.map(ws => ws.nome).join(", ")}</td>
+                            <td data-label="Data de Realização">${new Date(presenca.workshop[0].dataRealizacao).toLocaleString()}</td>
+                            <td data-label="Descrição">${presenca.workshop[0].descricao}</td>
+                            <td data-label="Presente">${presenca.presente ? "Sim" : "Não"}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -120,8 +111,8 @@ function mostrarDetalhesWorkshop(event, workshopId) {
                 </td>
             `;
 
-            const workshopRow = event.target.closest("tr");
-            workshopRow.insertAdjacentElement("afterend", detalhesLinha);
+            const workshopRow = event.target.closest("tr");  // Encontra a linha do workshop.
+            workshopRow.insertAdjacentElement("afterend", detalhesLinha); // Insere a nova linha de detalhes após a linha do
 
             const detailsContent = detalhesLinha.querySelector(".details-content");
             setTimeout(() => detailsContent.classList.add("show"), 10);

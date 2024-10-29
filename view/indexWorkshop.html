@@ -4,14 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Workshop</title>
+    
+    <!---STYLES GLOBAL------->
     <link rel="stylesheet" href="stylesGlobal/styles.css" />
+
+    <!---Styles Responsive------>
     <link rel="stylesheet" href="./stylesResponsive/stylesResponsive.css" />
+
+    <!----Script- para a junção com o backEnd-->
     <script src="script.js"></script>
+
+    <!---Script para responsividade-->
     <script src="./scriptResponsive/app.js"></script>
-    <script
-      src="https://kit.fontawesome.com/267d026f07.js"
-      crossorigin="anonymous"
-    ></script>
+
+    <!---Script Para Icones-->
+    <script src="https://kit.fontawesome.com/267d026f07.js" crossorigin="anonymous"></script>
   </head>
   <body>
     <!-- Header (TelaWidth <= 768px) -->
@@ -93,22 +100,24 @@
           <!--Lista dos Workshops-->
           <div class="listaColaboradores">
             <!---Tabela de Workshops-->
-            <table id="tabelaWorkshop">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Nome</th>
-                  <th>Data de Realização</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                </tr>
-              </tbody>
-            </table>
+            <div class="tabela-container">
+              <table id="tabelaWorkshop">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Data de Realização</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
 
             <div class="workshopDetalhes"></div>
           </div>
