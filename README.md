@@ -1,22 +1,22 @@
 # Desafio Workshop
 
-## 1. Descrição do Projeto
+# 1. Descrição do Projeto
 Esse projeto é uma API REST desenvolvida em Java utilizando Spring Boot, com banco de dados MySQL, e um front-end em HTML, CSS, e JavaScript. O sistema foi criado para gerenciar workshops e colaboradores, permitindo a criação, leitura, atualização e exclusão de dados relacionados.
 
-### Tecnologias utilizadas:
+## Tecnologias utilizadas:
 - ![Java](https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=java&logoColor=white) ![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white) ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white) ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black) ![Swagger](https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black)
 
-## 2. Como rodar o projeto localmente
+# 2. Como rodar o projeto localmente
 
 Para rodar o projeto localmente, siga os passos abaixo:
 
-### Passo 1: Clonar o repositório
+## Passo 1: Clonar o repositório
 ```bash
 git clone https://github.com/Daniel-Tavares-de-Lima/Desafio-Workshop.git
 cd seu-repositorio
 ```
 
-### Passo 2: Configurar o banco de dados Mysql
+## Passo 2: Configurar o banco de dados Mysql
 - Crie um banco de dados no MySQL com o nome workshopfast.
 - No arquivo application.properties em src/main/resources, configure as credenciais de acesso ao MySQL:
   ```
@@ -29,7 +29,7 @@ cd seu-repositorio
   spring.jpa.hibernate.ddl-auto=update
   ```
 
-### Passo 3 (Se necessário): Instale as dependências do projeto(SPRING BOOT)
+## Passo 3 (Se necessário): Instale as dependências do projeto(SPRING BOOT)
 - O arquivo para colocar as dependências se chama pom.xml
 ```
 <dependencies>
@@ -108,12 +108,12 @@ cd seu-repositorio
 	</dependencies>
 ```
 
-### Passo 4: Rodar o projeto
-####(API) Apenas no Backend
+## Passo 4: Rodar o projeto
+###(API) Apenas no Backend
 - o arquivo principal se chama WorkshopApplication em src/main/java/com/workshopfast/workshop
 
-####(FrontEnd) Apenas no Frontend
-####O *Mock* dos dados se chama mockBanco está na pasta inicial do projeto. Passos para usar:
+###(FrontEnd) Apenas no Frontend
+###O *Mock* dos dados se chama mockBanco está na pasta inicial do projeto. Passos para usar:
 1. Instale o json-server
    ```npm install -g json-server```
 2. Execute o comando na *mesma pasta* onde está o mockBanco.json
@@ -121,33 +121,33 @@ cd seu-repositorio
 
 3. Após isso, abra o indexColaborador.html via liverServer
    
-### Integração do Frontend com o BackEnd (FrontEnd/Backend)
+## Integração do Frontend com o BackEnd (FrontEnd/Backend)
 - Inicialize a API através do arquivo WorkshopApplication em src/main/java/com/workshopfast/workshop.
 - abra o arquivo se chama indexColaboradores em view através do liverServer
 - ### Aviso! Na minha máquina a integração do frontend com o backend só aconteceu quando eu desativei todas as extensões do meu navegador.
 
-### Passo 5: Acessar a documentação Swagger
+## Passo 5: Acessar a documentação Swagger
 Com o projeto em execução basta acessar: http://localhost:8080/swagger-ui/index.html#/
 
 
-## 3. Pré-Requisitos
+# 3. Pré-Requisitos
 Versões instaladas na minha máquina
 - Java: versão 22
 - Mysql Workbench: versão 8.0
 - Spring Boot: versão 2.5.4
 
-## 4. Endpoints
+# 4. Endpoints
 ### Colaboradores
 - **GET /api/colaboradores** - Lista todos os colaboradores
 - **POST /api/colaboradores** - Adiciona um novo colaborador
 - **PUT /api/colaboradores/{id}** - Atualiza as informações de um colaborador
 - **DELETE /api/colaboradores/{id}** - Remove um colaborador
-### Workshops
+## Workshops
 - **GET /api/workshops** - Lista todos os workshops
 - **POST /api/workshops** - Adiciona um novo workshop
 - **PUT /api/workshops/{id}** - Atualiza as informações de um workshop
 - DELETE /api/workshops/{id} - Remove um workshop
-### Ata de Presença
+## Ata de Presença
 - **GET /ata-de-presenca** - Lista todas as atas de presença.
 - **GET /ata-de-presenca/{id}** - Busca uma ata de presença específica pelo ID.
 - **DELETE /ata-de-presenca/{id}** - Remove uma ata de presença pelo ID.
