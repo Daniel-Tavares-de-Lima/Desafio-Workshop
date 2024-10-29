@@ -124,7 +124,7 @@ cd seu-repositorio
 ## Integração do Frontend com o BackEnd (FrontEnd/Backend)
 - Inicialize a API através do arquivo WorkshopApplication em src/main/java/com/workshopfast/workshop.
 - abra o arquivo se chama indexColaboradores em view através do liverServer
-- ### Aviso! Na minha máquina a integração do frontend com o backend só aconteceu quando eu desativei todas as extensões do meu navegador.
+- ### Aviso! Na minha máquina a integração do frontend com o backend só aconteceu quando eu desativei todas as extensões do meu navegador, não sei se será o caso em outra máquina.
 
 ## Passo 5: Acessar a documentação Swagger
 Com o projeto em execução basta acessar: http://localhost:8080/swagger-ui/index.html#/
