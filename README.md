@@ -29,7 +29,7 @@ cd seu-repositorio
   spring.jpa.hibernate.ddl-auto=update
   ```
 
-### Passo 3(Se necessário): Instale as dependências do projeto(SPRING BOOT)
+### Passo 3 (Se necessário): Instale as dependências do projeto(SPRING BOOT)
 - O arquivo para colocar as dependências se chama pom.xml
 ```
 <dependencies>
@@ -109,11 +109,21 @@ cd seu-repositorio
 ```
 
 ### Passo 4: Rodar o projeto
-####(API)
+####(API) Apenas no Backend
 - o arquivo principal se chama WorkshopApplication em src/main/java/com/workshopfast/workshop
 
-####(FrontEnd)
-- o arquivo se chama indexColaboradores em view
+####(FrontEnd) Apenas no Frontend
+####O *Mock* dos dados se chama mockBanco está na pasta inicial do projeto. Passos para usar:
+1. Instale o json-server
+   ```npm install -g json-server```
+2. Execute o comando na *mesma pasta* onde está o mockBanco.json
+   ```json-server --watch mockBanco.json --port 8080```
+
+3. Após isso, abra o indexColaborador.html via liverServer
+   
+### Integração do Frontend com o BackEnd (FrontEnd/Backend)
+- Inicialize a API através do arquivo WorkshopApplication em src/main/java/com/workshopfast/workshop.
+- abra o arquivo se chama indexColaboradores em view através do liverServer
 - ### Aviso! Na minha máquina a integração do frontend com o backend só aconteceu quando eu desativei todas as extensões do meu navegador.
 
 ### Passo 5: Acessar a documentação Swagger
