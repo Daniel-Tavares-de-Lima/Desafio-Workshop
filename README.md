@@ -15,24 +15,18 @@ Para rodar o projeto localmente, siga os passos abaixo:
 git clone https://github.com/Daniel-Tavares-de-Lima/Desafio-Workshop.git
 cd seu-repositorio
 ```
-
-## Passo 2: Configurar o banco de dados Mysql
-- Crie um banco de dados no MySQL com o nome workshopfast.
-- No arquivo application.properties em src/main/resources, configure as credenciais de acesso ao MySQL:
-  ```
-  spring.application.name=workshop
-  spring.output.ansi.enabled=ALWAYS
-  spring.datasource.url=jdbc:mysql://localhost:3306/workshopfast
-  spring.datasource.username=root
-  spring.datasource.password=root
-  spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL8Dialec
-  spring.jpa.hibernate.ddl-auto=update
-  ```
-
-## Passo 3 (Se necessário): Instale as dependências do projeto(SPRING BOOT)
-- O arquivo para colocar as dependências se chama pom.xml
-```
-<dependencies>
+## Passo 2: Inicializar um Projeto Spring
+- Entre no site: https://start.spring.io
+- Inicialização Projeto SpringBoot:
+  1. Project: Maven
+  2. Language: Java
+  3. SpringBootVersion: 3.3.5
+  4. Name: workshopfast
+  5. Packaging: JAR
+  6. Java: 17 ou superior.
+  7. Dependecies:
+ 	```
+	<dependencies>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -104,9 +98,22 @@ cd seu-repositorio
       		<version>2.6.0</version>
    		</dependency>
 
-
 	</dependencies>
-```
+
+  ```
+
+  ## Passo 3: Configurar o banco de dados Mysql
+- Crie um banco de dados(create database) no MySQL com o nome workshopfast.
+- No arquivo application.properties em src/main/resources, configure as credenciais de acesso ao MySQL:
+  ```
+  spring.application.name=workshop
+  spring.output.ansi.enabled=ALWAYS
+  spring.datasource.url=jdbc:mysql://localhost:3306/workshopfast
+  spring.datasource.username=root
+  spring.datasource.password=root
+  spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL8Dialec
+  spring.jpa.hibernate.ddl-auto=update
+  ```
 
 ## Passo 4: Rodar o projeto
 ###(API) Apenas no Backend
@@ -134,7 +141,7 @@ Com o projeto em execução basta acessar: http://localhost:8080/swagger-ui/inde
 Versões instaladas na minha máquina
 - Java: versão 22
 - Mysql Workbench: versão 8.0
-- Spring Boot: versão 2.5.4
+- Spring Boot: versão 3.3.5
 
 # 4. Endpoints
 ### Colaboradores
