@@ -109,12 +109,12 @@ cd seu-repositorio
 ```
 
 ### Passo 4: Rodar o projeto
-#####(API)
+####(API)
 - o arquivo principal se chama WorkshopApplication em src/main/java/com/workshopfast/workshop
 
-#####(FrontEnd)
+####(FrontEnd)
 - o arquivo se chama indexColaboradores em view
-- ### Aviso! Na minha máquina a integração do frontend com o backend aconteceu quando eu desativei todas as extensões do meu navegador.
+- ### Aviso! Na minha máquina a integração do frontend com o backend só aconteceu quando eu desativei todas as extensões do meu navegador.
 
 ### Passo 5: Acessar a documentação Swagger
 Com o projeto em execução basta acessar: http://localhost:8080/swagger-ui/index.html#/
@@ -123,7 +123,7 @@ Com o projeto em execução basta acessar: http://localhost:8080/swagger-ui/inde
 ## 3. Pré-Requisitos
 Versões instaladas na minha máquina
 - Java: versão 22
-- Mysql: versão 8.0
+- Mysql Workbench: versão 8.0
 - Spring Boot: versão 2.5.4
 
 ## 4. Endpoints
@@ -137,3 +137,8 @@ Versões instaladas na minha máquina
 - POST /api/workshops - Adiciona um novo workshop
 - PUT /api/workshops/{id} - Atualiza as informações de um workshop
 - DELETE /api/workshops/{id} - Remove um workshop
+
+## 5. Banco de Dados MER E MR
+![DEMONSTRACION](https://github.com/Daniel-Tavares-de-Lima/Desafio-Workshop/blob/main/Modelo%20Relacional%20Projeto%20Workshop.png)
+
+![DEMONSTRACION](https://github.com/Daniel-Tavares-de-Lima/Desafio-Workshop/blob/main/Modelo%20de%20Entidade%20Relacional%20Projeto%20Workshop.png)
