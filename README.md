@@ -15,17 +15,10 @@ Para rodar o projeto localmente, siga os passos abaixo:
 git clone https://github.com/Daniel-Tavares-de-Lima/Desafio-Workshop.git
 cd seu-repositorio
 ```
-## Passo 2: Inicializar um Projeto Spring
-- Entre no site: https://start.spring.io
-- Inicialização Projeto SpringBoot:
-  1. Project: Maven
-  2. Language: Java
-  3. SpringBootVersion: 3.3.5
-  4. Name: workshopfast
-  5. Packaging: JAR
-  6. Java: 17 ou superior.
-  7. Dependecies:
- 	```
+## Passo 2: Verificar as Dependências do Projeto Spring
+  1. Dependecies:
+    ```
+
 	<dependencies>
 
 		<dependency>
@@ -99,8 +92,7 @@ cd seu-repositorio
    		</dependency>
 
 	</dependencies>
-
-  ```
+	```
 
   ## Passo 3: Configurar o banco de dados Mysql
 - Crie um banco de dados(create database) no MySQL com o nome workshopfast.
